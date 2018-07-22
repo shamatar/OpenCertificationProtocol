@@ -14,7 +14,7 @@ class ImportViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var importCertificateButton: UIButton!
     
-    var urlString: String? = "hello"
+    var urlString: String?
     let networkService = NetworkInteractionService()
     let localStorageService = LocalStorageService()
     

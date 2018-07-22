@@ -18,17 +18,20 @@ class NetworkInteractionService {
         let request = URLRequest(url: url)
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
-                completion(Result.error(error))
+                DispatchQueue.main.async {
+                    completion(Result.error(error))
+                }
                 return
             }
             do {
-                print(String(data: data!, encoding: .utf8))
-                if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:String] {
+                if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String:String]] {
                     var res = [UserDataModel]()
-                    for (key, value) in json {
-                        res.append(
-                            UserDataModel(typeID: key, detail: value)
-                        )
+                    for el in json {
+                        for (key, value) in el {
+                            res.append(
+                                UserDataModel(typeID: key, detail: value)
+                            )
+                        }
                     }
                     DispatchQueue.main.async {
                         completion(Result.success(res))
@@ -58,6 +61,7 @@ class NetworkInteractionService {
         })
     }
     
+    //TODO: - this method shouldn't be empty
     func deleteDataOnTheServer(completion: @escaping (Bool) -> Void) {
         
     }

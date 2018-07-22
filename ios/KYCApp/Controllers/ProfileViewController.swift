@@ -29,13 +29,6 @@ class ProfileViewController: UIViewController, QRCodeReaderViewControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         info = localStorage.getAllData()
-        
-        //Just for testing purposes
-//        info = [UserDataModel(typeID: "Name", detail: "Alex Vorobev"),
-//                UserDataModel(typeID: "Age", detail: "20"),
-//                UserDataModel(typeID: "Phone", detail: "+7123123123"),
-//                UserDataModel(typeID: "Salary", detail: "1010292847 RUB")
-//        ]
         tableView.dataSource = self
         tableView.delegate = self
     }

@@ -123,6 +123,17 @@
                                     <action selector="importButtonTapped:" destination="qWw-oV-OwY" eventType="touchUpInside" id="XIO-1S-LFL"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQj-ug-yBx">
+                                <rect key="frame" x="170.5" y="617" width="34" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="34" id="9VH-0l-QWO"/>
+                                    <constraint firstAttribute="height" constant="30" id="jGt-68-Mfg"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="qWw-oV-OwY" eventType="touchUpInside" id="fPi-8N-PQc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -133,6 +144,8 @@
                             <constraint firstItem="kW5-MM-pKP" firstAttribute="leading" secondItem="R47-2O-uQO" secondAttribute="leading" constant="20" id="7uW-ne-xkV"/>
                             <constraint firstItem="VkV-LW-LgG" firstAttribute="top" secondItem="zcV-rF-qIK" secondAttribute="bottom" constant="20" id="DTf-tJ-0dg"/>
                             <constraint firstItem="0nn-og-ghb" firstAttribute="trailing" secondItem="P3X-Pw-VVx" secondAttribute="trailing" constant="70" id="Spx-jf-mNe"/>
+                            <constraint firstItem="hQj-ug-yBx" firstAttribute="centerX" secondItem="R47-2O-uQO" secondAttribute="centerX" id="YCA-Sp-P9d"/>
+                            <constraint firstItem="0nn-og-ghb" firstAttribute="bottom" secondItem="hQj-ug-yBx" secondAttribute="bottom" constant="20" id="bkH-9i-cGu"/>
                             <constraint firstItem="0nn-og-ghb" firstAttribute="bottom" secondItem="P3X-Pw-VVx" secondAttribute="bottom" constant="100" id="dyJ-fg-tih"/>
                             <constraint firstItem="P3X-Pw-VVx" firstAttribute="top" secondItem="VkV-LW-LgG" secondAttribute="bottom" constant="20" id="hLA-bm-aFK"/>
                             <constraint firstItem="zcV-rF-qIK" firstAttribute="leading" secondItem="0nn-og-ghb" secondAttribute="leading" constant="40" id="hQr-sB-RUH"/>
@@ -428,6 +441,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="911-uF-hPP"/>
+        <segue reference="yJH-jd-tiD"/>
     </inferredMetricsTieBreakers>
 </document>

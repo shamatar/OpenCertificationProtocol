@@ -28,6 +28,10 @@ class ImportFromTextViewController: UIViewController {
         }
     }
     
+    @IBAction func backButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ProfileViewController, let parsedData = sender as? [UserDataModel] {
             vc.info = parsedData
