@@ -25,6 +25,8 @@ class LocalStorageService {
     func getDataForTypes(types: [String]) -> [UserDataModel] {
         let request: NSFetchRequest<UserData> = UserData.fetchRequest()
         var result = [UserDataModel]()
+        let sort = NSSortDescriptor(key: #keyPath(UserData.index), ascending: true)
+        request.sortDescriptors = [sort]
         do {
             let fetchedData = try mainContext.fetch(request)
             for el in fetchedData {
@@ -43,6 +45,8 @@ class LocalStorageService {
     
     func getAllData() -> [UserDataModel] {
         let request: NSFetchRequest<UserData> = UserData.fetchRequest()
+        let sort = NSSortDescriptor(key: #keyPath(UserData.index), ascending: true)
+        request.sortDescriptors = [sort]
         var result = [UserDataModel]()
         do {
             let fetchedData = try mainContext.fetch(request)
@@ -74,10 +78,11 @@ class LocalStorageService {
                 }
                 
                 //Add new data
-                for userData in data {
+                for (index, userData) in data.enumerated() {
                     let newEntity = NSEntityDescription.insertNewObject(forEntityName: "UserData", into: context) as? UserData
                     newEntity?.typeID = userData.typeID
                     newEntity?.detail = userData.detail
+                    newEntity?.index = Int16(index)
                 }
                 try context.save()
                 DispatchQueue.main.async {

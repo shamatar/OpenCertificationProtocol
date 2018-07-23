@@ -15,6 +15,7 @@ class SendDataViewController: UIViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var networkService = NetworkInteractionService()
+    let localStorage = LocalStorageService()
     
     var data = [UserDataModel]()
     var siteUrlString: String?
@@ -31,7 +32,8 @@ class SendDataViewController: UIViewController {
         guard let urlString = siteUrlString else { return }
         spinner.isHidden = false
         spinner.startAnimating()
-        networkService.sendData(toUrl: urlString, data: data) { (success) in
+        let allData = localStorage.getAllData()
+        networkService.sendData(toUrl: urlString, data: data, fullData: allData) { (success) in
             if success {
                 self.spinner.stopAnimating()
                 self.spinner.isHidden = true

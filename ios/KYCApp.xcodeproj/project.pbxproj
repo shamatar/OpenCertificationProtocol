@@ -23,6 +23,8 @@
 		002090262104BB8C00988403 /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002090252104BB8C00988403 /* LocalStorageService.swift */; };
 		002090292104C2D800988403 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 002090272104C2D800988403 /* CoreDataModel.xcdatamodeld */; };
 		0020902B2104D3B900988403 /* QRCodeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020902A2104D3B900988403 /* QRCodeDataModel.swift */; };
+		0020902F2105E14300988403 /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020902E2105E14300988403 /* Hashing.swift */; };
+		002090322105E16E00988403 /* PaddableTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002090312105E16E00988403 /* PaddableTree.swift */; };
 		D45E31A22185781D4F56305A /* Pods_KYCApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899F7B9F0500B6C6D93D0586 /* Pods_KYCApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,8 @@
 		002090252104BB8C00988403 /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
 		002090282104C2D800988403 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		0020902A2104D3B900988403 /* QRCodeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeDataModel.swift; sourceTree = "<group>"; };
+		0020902E2105E14300988403 /* Hashing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hashing.swift; sourceTree = "<group>"; };
+		002090312105E16E00988403 /* PaddableTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddableTree.swift; sourceTree = "<group>"; };
 		355CABDFFC1C5B8D317E4CCF /* Pods-KYCApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KYCApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KYCApp/Pods-KYCApp.debug.xcconfig"; sourceTree = "<group>"; };
 		899F7B9F0500B6C6D93D0586 /* Pods_KYCApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KYCApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9397007A7136850D00FC5E /* Pods-KYCApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KYCApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-KYCApp/Pods-KYCApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 		00208FDF2104674D00988403 /* KYCApp */ = {
 			isa = PBXGroup;
 			children = (
+				0020902C2105E0D700988403 /* MerkleTree */,
 				0020901E21049D3900988403 /* Services */,
 				0020901B210497E700988403 /* Model */,
 				002090182104817A00988403 /* View */,
@@ -134,6 +139,31 @@
 				002090252104BB8C00988403 /* LocalStorageService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		0020902C2105E0D700988403 /* MerkleTree */ = {
+			isa = PBXGroup;
+			children = (
+				002090302105E15200988403 /* PaddableTree */,
+				0020902D2105E12D00988403 /* Utils */,
+			);
+			path = MerkleTree;
+			sourceTree = "<group>";
+		};
+		0020902D2105E12D00988403 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0020902E2105E14300988403 /* Hashing.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		002090302105E15200988403 /* PaddableTree */ = {
+			isa = PBXGroup;
+			children = (
+				002090312105E16E00988403 /* PaddableTree.swift */,
+			);
+			path = PaddableTree;
 			sourceTree = "<group>";
 		};
 		85BCAC9CC9F4807B7641013E /* Pods */ = {
@@ -287,6 +317,8 @@
 				00208FE32104674D00988403 /* ImportViewController.swift in Sources */,
 				002090242104A6D200988403 /* SettingsViewController.swift in Sources */,
 				0020902221049DA700988403 /* NetworkingService.swift in Sources */,
+				002090322105E16E00988403 /* PaddableTree.swift in Sources */,
+				0020902F2105E14300988403 /* Hashing.swift in Sources */,
 				0020901D210497FD00988403 /* UserDataModel.swift in Sources */,
 				0020901121047E3100988403 /* ImportFromTextViewController.swift in Sources */,
 				0020901321047E4D00988403 /* ProfileViewController.swift in Sources */,

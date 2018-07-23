@@ -2,9 +2,10 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="UserData" representedClassName="UserData" syncable="YES" codeGenerationType="class">
         <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="typeID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UserData" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="UserData" positionX="-63" positionY="-18" width="128" height="90"/>
     </elements>
 </model>

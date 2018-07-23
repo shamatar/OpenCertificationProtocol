@@ -55,7 +55,17 @@ class NetworkInteractionService {
         
     }
     
-    func sendData(toUrl urlString: String,data: [UserDataModel], completion: @escaping(Bool) -> Void) {
+    func sendData(toUrl urlString: String,data: [UserDataModel], fullData: [UserDataModel], completion: @escaping(Bool) -> Void) {
+        let tree = PaddabbleTree(fullData, UserDataModel(typeID: "", detail: ""))
+        var proofs = [Data]()
+        for el in data {
+            guard let index = fullData.index(where: { (model) -> Bool in
+                return model.typeID == el.typeID && model.detail == el.detail
+            }) else { return }
+            guard let proof = tree.makeBinaryProof(index) else { return }
+            proofs.append(proof)
+        }
+        // Here should be sending of data and proofs to somebody (Data, Proofs)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
             completion(true)
         })
