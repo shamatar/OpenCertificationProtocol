@@ -31,7 +31,10 @@ class ProfileViewController: UIViewController, QRCodeReaderViewControllerDelegat
         info = localStorage.getAllData()
         tableView.dataSource = self
         tableView.delegate = self
+        Web3Service().testIt()
     }
+    
+    
 
     
     @IBAction func qrScanTapped(_ sender: Any) {
