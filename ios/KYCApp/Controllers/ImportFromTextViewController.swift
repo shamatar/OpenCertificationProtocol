@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(*, deprecated)
 class ImportFromTextViewController: UIViewController {
 
     @IBOutlet weak var errorLabel: UILabel!

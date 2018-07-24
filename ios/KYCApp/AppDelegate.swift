@@ -46,28 +46,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //TODO: - Remove it as soon as possible
     func putWalletIntoApp() {
         
-        let key = "1693666291400fef491bc87aec5359d3229eb6e676e1ec7d636a06b3e0cf61af"
-        let text = key.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard let data = Data.fromHex(text) else {
-            return
+//        let key = "1693666291400fef491bc87aec5359d3229eb6e676e1ec7d636a06b3e0cf61af"
+//        let text = key.trimmingCharacters(in: .whitespacesAndNewlines)
+//        guard let data = Data.fromHex(text) else {
+//            return
+//        }
+//
+//        guard let newWallet = try? EthereumKeystoreV3(privateKey: data) else {
+//            return
+//        }
+//
+//        guard let wallet = newWallet, wallet.addresses?.count == 1 else {
+//            return
+//        }
+//        guard let keyData = try? JSONEncoder().encode(wallet.keystoreParams) else {
+//            return
+//        }
+//        guard let address = newWallet?.addresses?.first?.address else {
+//            return
+//        }
+        //let data = try? EthereumKeystoreV3()
+        if UserDefaults.standard.value(forKey: "keyData") == nil {
+            guard let newWallet = try? EthereumKeystoreV3() else {
+                return
+            }
+            
+            guard let wallet = newWallet, wallet.addresses?.count == 1 else {
+                return
+            }
+            guard let keyData = try? JSONEncoder().encode(wallet.keystoreParams) else {
+                return
+            }
+            guard let address = newWallet?.addresses?.first?.address else {
+                return
+            }
+            guard let pk = try? newWallet?.UNSAFE_getPrivateKeyData(password: "BANKEXFOUNDATION", account: EthereumAddress(address)!), let privateKey = pk else { return }
+            guard let publicKey = Web3.Utils.privateToPublic(privateKey) else { return }
+            UserDefaults.standard.set(keyData, forKey: "keyData")
+            UserDefaults.standard.set(address, forKey: "address")
+            UserDefaults.standard.set(publicKey, forKey: "publicKey")
         }
         
-        guard let newWallet = try? EthereumKeystoreV3(privateKey: data) else {
-            return
-        }
-        
-        guard let wallet = newWallet, wallet.addresses?.count == 1 else {
-            return
-        }
-        guard let keyData = try? JSONEncoder().encode(wallet.keystoreParams) else {
-            return
-        }
-        guard let address = newWallet?.addresses?.first?.address else {
-            return
-        }
-        
-        UserDefaults.standard.set(keyData, forKey: "keyData")
-        UserDefaults.standard.set(address, forKey: "address")
     }
     
     //Not sure what is the difference between commented method and didFinishLaunchingWithOptions

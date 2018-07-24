@@ -16,7 +16,7 @@ public struct SECP256K1 {
     static var secp256k1_halfN = secp256k1_N >> 2
 }
 
-extension SECP256K1 {
+public extension SECP256K1 {
     static var context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN|SECP256K1_CONTEXT_VERIFY))
     
     static func signForRecovery(hash: Data, privateKey: Data, useExtraEntropy: Bool = false) -> (serializedSignature:Data?, rawSignature: Data?) {

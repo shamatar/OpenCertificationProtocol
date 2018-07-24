@@ -33,7 +33,7 @@ class SendDataViewController: UIViewController {
         spinner.isHidden = false
         spinner.startAnimating()
         let allData = localStorage.getAllData()
-        networkService.sendData(toUrl: urlString, data: data, fullData: allData) { (success) in
+        networkService.sendData(toUrl: urlString, data: data, fullData: allData, randomNumber: 1) { (success) in
             if success {
                 self.spinner.stopAnimating()
                 self.spinner.isHidden = true

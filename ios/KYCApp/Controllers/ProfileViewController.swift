@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController, QRCodeReaderViewControllerDelegat
         info = localStorage.getAllData()
         tableView.dataSource = self
         tableView.delegate = self
-        Web3Service().testIt()
+        //Web3Service().testIt()
     }
     
     
@@ -40,7 +40,6 @@ class ProfileViewController: UIViewController, QRCodeReaderViewControllerDelegat
     @IBAction func qrScanTapped(_ sender: Any) {
         readerVC.delegate = self
         
-        readerVC.completionBlock = { (result: QRCodeReaderResult?) in }
         readerVC.modalPresentationStyle = .formSheet
         present(readerVC, animated: true, completion: nil)
     }

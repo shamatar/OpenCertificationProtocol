@@ -7,11 +7,11 @@
 //
 
 import Foundation
+import web3swift
 
 
 //TODO: - ....
 class NetworkInteractionService {
-    
     //This is a method for getting data from the link and than delete that data in the server
     func retrieveData(fromUrl urlString: String, completion: @escaping(Result<[UserDataModel]>) -> Void) {
         guard let url = URL(string: urlString) else { return }
@@ -54,8 +54,8 @@ class NetworkInteractionService {
         dataTask.resume()
         
     }
-    
-    func sendData(toUrl urlString: String,data: [UserDataModel], fullData: [UserDataModel], completion: @escaping(Bool) -> Void) {
+    //Method for sending proofs + data + signature, requested by the bank
+    func sendData(toUrl urlString: String,data: [UserDataModel], fullData: [UserDataModel], randomNumber: Int,completion: @escaping(Bool) -> Void) {
         let tree = PaddabbleTree(fullData, UserDataModel(typeID: "", detail: ""))
         var proofs = [Data]()
         for el in data {
@@ -65,7 +65,14 @@ class NetworkInteractionService {
             guard let proof = tree.makeBinaryProof(index) else { return }
             proofs.append(proof)
         }
-        // Here should be sending of data and proofs to somebody (Data, Proofs)
+        
+        //We need to transform array [UserDataModel] to Data(probably make json out of it and than transform if to Data is a good idea)
+        guard let data = UserDefaults.standard.data(forKey: "keyData") else { return }
+        guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return }
+        guard let keystore = EthereumKeystoreV3(data) else { return }
+        guard let privateKey = try? keystore.UNSAFE_getPrivateKeyData(password: "BANKEXFOUNDATION", account: EthereumAddress(address)!) else { return }
+        let signature = SECP256K1.signForRecovery(hash: (fullData.first?.data)!, privateKey: privateKey)
+        // Here should be sending of data, proofs and signature to somebody (Data, Proofs)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
             completion(true)
         })
@@ -74,6 +81,34 @@ class NetworkInteractionService {
     //TODO: - this method shouldn't be empty
     func deleteDataOnTheServer(completion: @escaping (Bool) -> Void) {
         
+    }
+    
+    func sendPublicKey(key: Data, toUrl urlString: String, completion: @escaping(Bool) -> Void) {
+        guard let url = URL(string: urlString) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let initialData = InitialData(publicKey: key)
+        do {
+            request.httpBody = try JSONEncoder().encode(initialData)
+        } catch{
+            completion(false)
+        }
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { (data1, response, error) in
+            if error != nil {
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+                return
+            } else {
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            }
+        }
+        
+        dataTask.resume()
     }
 }
 
@@ -84,4 +119,9 @@ enum Result<T> {
 
 enum NetworkErrors: Error {
     case wrongFromatOfData
+}
+
+struct InitialData: Encodable {
+    var publicKey: Data
+    let signature: Int = 1
 }
