@@ -11,7 +11,7 @@ export interface UserState {
 }
 
 export const initialState: UserState = {
-  user: { name: 'Angular User' },
+  user: { name: 'Honored User' },
   loading: false,
   loaded: true,
 };

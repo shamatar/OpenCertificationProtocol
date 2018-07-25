@@ -1,11 +1,11 @@
 {
-  "name": "angular-webpack-starter",
-  "version": "4.0.0",
-  "description": "Angular and Webpack Starter",
-  "author": "Qdouble <qdouble@gmail.com>",
+  "name": "bankex_sertification_frontend",
+  "version": "1.0.0",
+  "description": "Bankex",
+  "author": "Anton Pegov <antonpegov@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qdouble/angular-webpack-starter.git"
+    "url": ""
   },
   "scripts": {
     "postinstall": "npm run sass && npm run build:dll",
@@ -105,6 +105,7 @@
     "awesome-typescript-loader": "~5.0.0",
     "codelyzer": "~4.3.0",
     "compression-webpack-plugin": "^1.1.11",
+    "concurrently": "^3.6.1",
     "copy-webpack-plugin": "~4.5.1",
     "css-loader": "~0.28.11",
     "es6-promise": "~4.2.4",
@@ -114,6 +115,7 @@
     "html-webpack-plugin": "^4.0.0-alpha",
     "imports-loader": "~0.8.0",
     "ip": "~1.1.5",
+    "istanbul-instrumenter-loader": "^3.0.1",
     "karma": "~2.0.0",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage": "~1.1.1",
@@ -130,6 +132,7 @@
     "protractor": "~5.3.2",
     "raw-loader": "~0.5.1",
     "rimraf": "~2.6.2",
+    "rxjs-compat": "^6.2.2",
     "sass-loader": "^7.0.1",
     "source-map-loader": "~0.2.3",
     "string-replace-loader": "~2.1.1",
@@ -152,8 +155,5 @@
     "webpack-merge": "~4.1.2"
   },
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/qdouble/angular-webpack-starter/issues"
-  },
-  "homepage": "https://github.com/qdouble/angular-webpack-starter#readme"
+  "homepage": "https://bankex.com"
 }

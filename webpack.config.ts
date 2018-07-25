@@ -95,7 +95,7 @@ const DLL_VENDORS = [
 
 const COPY_FOLDERS = [
   { from: 'src/assets', to: 'assets' },
-  { from: 'src/app/styles.css' },
+  // { from: 'src/app/styles.css' },
   ...MY_COPY_FOLDERS
 ];
 
@@ -184,7 +184,8 @@ const clientConfig = function webpackConfig(): WebpackConfig {
   } else {
     config.plugins.push(
       new CopyWebpackPlugin(COPY_FOLDERS, { ignore: ['*dist_root/*'] }),
-      new CopyWebpackPlugin([{ from: 'src/assets/dist_root' }])
+      new CopyWebpackPlugin([{ from: 'src/assets/dist_root' }]),
+      new CopyWebpackPlugin([{ from: 'src/assets/css' }])
     );
   }
 
