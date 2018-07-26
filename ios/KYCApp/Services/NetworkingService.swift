@@ -2,9 +2,6 @@
 //  NetworkingService.swift
 //  KYCApp
 //
-//  Created by Георгий Фесенко on 22/07/2018.
-//  Copyright © 2018 Георгий Фесенко. All rights reserved.
-//
 
 import Foundation
 import web3swift

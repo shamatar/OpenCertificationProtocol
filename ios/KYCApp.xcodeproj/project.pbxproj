@@ -26,7 +26,7 @@
 		0020902F2105E14300988403 /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020902E2105E14300988403 /* Hashing.swift */; };
 		002090322105E16E00988403 /* PaddableTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002090312105E16E00988403 /* PaddableTree.swift */; };
 		0020903421061D4600988403 /* Web3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020903321061D4600988403 /* Web3Service.swift */; };
-		D45E31A22185781D4F56305A /* Pods_KYCApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899F7B9F0500B6C6D93D0586 /* Pods_KYCApp.framework */; };
+		394D1672A245E689CB927967 /* libPods-KYCApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC3D3C7418093F4D5911DCD /* libPods-KYCApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,8 +51,8 @@
 		0020902E2105E14300988403 /* Hashing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hashing.swift; sourceTree = "<group>"; };
 		002090312105E16E00988403 /* PaddableTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddableTree.swift; sourceTree = "<group>"; };
 		0020903321061D4600988403 /* Web3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3Service.swift; sourceTree = "<group>"; };
+		1AC3D3C7418093F4D5911DCD /* libPods-KYCApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KYCApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		355CABDFFC1C5B8D317E4CCF /* Pods-KYCApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KYCApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KYCApp/Pods-KYCApp.debug.xcconfig"; sourceTree = "<group>"; };
-		899F7B9F0500B6C6D93D0586 /* Pods_KYCApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KYCApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9397007A7136850D00FC5E /* Pods-KYCApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KYCApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-KYCApp/Pods-KYCApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D45E31A22185781D4F56305A /* Pods_KYCApp.framework in Frameworks */,
+				394D1672A245E689CB927967 /* libPods-KYCApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +181,7 @@
 		A8AF7BB3CF1AEFA1A9A35644 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				899F7B9F0500B6C6D93D0586 /* Pods_KYCApp.framework */,
+				1AC3D3C7418093F4D5911DCD /* libPods-KYCApp.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -197,7 +197,6 @@
 				00208FD92104674D00988403 /* Sources */,
 				00208FDA2104674D00988403 /* Frameworks */,
 				00208FDB2104674D00988403 /* Resources */,
-				5EA987165B5E299C0BEE739C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -271,40 +270,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5EA987165B5E299C0BEE739C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KYCApp/Pods-KYCApp-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
-				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
-				"${BUILT_PRODUCTS_DIR}/libsodium/libsodium.framework",
-				"${BUILT_PRODUCTS_DIR}/secp256k1_ios/secp256k1_ios.framework",
-				"${BUILT_PRODUCTS_DIR}/web3swift/web3swift.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libsodium.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1_ios.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/web3swift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KYCApp/Pods-KYCApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -477,10 +442,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8FZ3UYF69;
 				INFOPLIST_FILE = KYCApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bankex.KYCApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -496,10 +458,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8FZ3UYF69;
 				INFOPLIST_FILE = KYCApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bankex.KYCApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

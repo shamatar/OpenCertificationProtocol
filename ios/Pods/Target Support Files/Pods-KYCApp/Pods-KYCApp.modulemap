@@ -1,4 +1,4 @@
-framework module Pods_KYCApp {
+module Pods_KYCApp {
   umbrella header "Pods-KYCApp-umbrella.h"
 
   export *

@@ -2,9 +2,6 @@
 //  Web3Swrvice.swift
 //  KYCApp
 //
-//  Created by Георгий Фесенко on 23/07/2018.
-//  Copyright © 2018 Георгий Фесенко. All rights reserved.
-//
 
 import Foundation
 import web3swift
@@ -17,9 +14,9 @@ class Web3Service {
     let ethContractAddress = EthereumAddress("0xe562e2562c142eee458b3cdee66e721c3c639acf")!
     func testIt() {
         guard let data = UserDefaults.standard.data(forKey: "keyData") else { return }
-        guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return }
+//        guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return }
         guard let keystore = EthereumKeystoreV3(data) else { return }
-        let ethAddressFrom = EthereumAddress(address)
+        guard let ethAddressFrom = keystore.addresses?.first else {return}
         
         let web3 = Web3.InfuraRinkebyWeb3()
         
