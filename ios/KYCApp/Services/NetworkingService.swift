@@ -63,7 +63,7 @@ class NetworkInteractionService {
             proofs.append(proof)
         }
         
-        //We need to transform array [UserDataModel] to Data(probably make json out of it and than transform if to Data is a good idea)
+        //You have a structure of the data to send written on some A4 paper on your table
         guard let data = UserDefaults.standard.data(forKey: "keyData") else { return }
         guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return }
         guard let keystore = EthereumKeystoreV3(data) else { return }
@@ -73,11 +73,6 @@ class NetworkInteractionService {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
             completion(true)
         })
-    }
-    
-    //TODO: - this method shouldn't be empty
-    func deleteDataOnTheServer(completion: @escaping (Bool) -> Void) {
-        
     }
     
     //DONE.
