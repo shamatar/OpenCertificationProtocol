@@ -18,6 +18,7 @@ class ImportViewController: UIViewController {
     var urlString: String?
     let networkService = NetworkInteractionService()
     let localStorageService = LocalStorageService()
+    let parser = ParserService()
     var qrType: QRType = .importQR
     lazy var readerVC: QRCodeReaderViewController = {
         let builder = QRCodeReaderViewControllerBuilder {
@@ -117,28 +118,38 @@ extension ImportViewController: QRCodeReaderViewControllerDelegate {
         spinner.startAnimating()
         dismiss(animated: true, completion: nil)
         switch qrType {
-        //MARK: - QRCodeScanner appears and getting the url which will give user the data
+        //MARK: - Retrieving data by sessionId?
         case .importQR:
-            let urlString = result.value
-            dataRetrieving(withUrl: urlString)
+            let sessionId = result.value
+            dataRetrieving(withUrl: sessionId)
 
         //MARK: - scan QR and send data(pubKey + sign) to received url
         case .sendKey:
-            let urlString = result.value
+            guard let model = parser.parseQRBeforeSetConnection(data: result.value) else { return }
+            let urlString = model.address + "api/mobile/setConnection"
             guard let key = UserDefaults.standard.data(forKey: "publicKey") else { return }
-            networkService.sendPublicKey(key: key, toUrl: urlString) { (success) in
+            networkService.sendPublicKey(key: key, toUrl: urlString, sessionId: model.sessionId, mainURL: model.mainURL) { (success) in
                 self.spinner.stopAnimating()
                 self.spinner.isHidden = true
                 self.descriptionLabel.isHidden = false
                 self.importCertificateButton.isHidden = false
                 if success {
-                    //TODO: - probably some alert
+                    self.showAllert(message: "Your public key was successfully sent.")
                 } else {
-                    //TODO: - and here too
+                    self.showAllert(message: "There is a trouble. Please, try again.")
                 }
             }
         }
     }
+    
+    func showAllert(message: String) {
+        let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        let actionYes = UIAlertAction(title: "Ok", style: .default)
+        alertController.addAction(actionYes)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
     
     func readerDidCancel(_ reader: QRCodeReaderViewController) {
         reader.stopScanning()

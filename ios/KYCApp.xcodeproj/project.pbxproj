@@ -22,7 +22,7 @@
 		002090242104A6D200988403 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002090232104A6D200988403 /* SettingsViewController.swift */; };
 		002090262104BB8C00988403 /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002090252104BB8C00988403 /* LocalStorageService.swift */; };
 		002090292104C2D800988403 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 002090272104C2D800988403 /* CoreDataModel.xcdatamodeld */; };
-		0020902B2104D3B900988403 /* QRCodeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020902A2104D3B900988403 /* QRCodeDataModel.swift */; };
+		0020902B2104D3B900988403 /* QRCodeDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020902A2104D3B900988403 /* QRCodeDataModels.swift */; };
 		0020902F2105E14300988403 /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020902E2105E14300988403 /* Hashing.swift */; };
 		002090322105E16E00988403 /* PaddableTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002090312105E16E00988403 /* PaddableTree.swift */; };
 		0020903421061D4600988403 /* Web3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020903321061D4600988403 /* Web3Service.swift */; };
@@ -47,7 +47,7 @@
 		002090232104A6D200988403 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		002090252104BB8C00988403 /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
 		002090282104C2D800988403 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
-		0020902A2104D3B900988403 /* QRCodeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeDataModel.swift; sourceTree = "<group>"; };
+		0020902A2104D3B900988403 /* QRCodeDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeDataModels.swift; sourceTree = "<group>"; };
 		0020902E2105E14300988403 /* Hashing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hashing.swift; sourceTree = "<group>"; };
 		002090312105E16E00988403 /* PaddableTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddableTree.swift; sourceTree = "<group>"; };
 		0020903321061D4600988403 /* Web3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3Service.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				0020901C210497FD00988403 /* UserDataModel.swift */,
-				0020902A2104D3B900988403 /* QRCodeDataModel.swift */,
+				0020902A2104D3B900988403 /* QRCodeDataModels.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,7 +293,7 @@
 				0020901321047E4D00988403 /* ProfileViewController.swift in Sources */,
 				00208FE12104674D00988403 /* AppDelegate.swift in Sources */,
 				0020901621047EDA00988403 /* SendDataViewController.swift in Sources */,
-				0020902B2104D3B900988403 /* QRCodeDataModel.swift in Sources */,
+				0020902B2104D3B900988403 /* QRCodeDataModels.swift in Sources */,
 				002090262104BB8C00988403 /* LocalStorageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,7 +442,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8FZ3UYF69;
 				INFOPLIST_FILE = KYCApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bankex.KYCApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -458,7 +461,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8FZ3UYF69;
 				INFOPLIST_FILE = KYCApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bankex.KYCApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

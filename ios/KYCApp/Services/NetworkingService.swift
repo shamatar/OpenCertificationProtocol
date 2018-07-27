@@ -80,12 +80,13 @@ class NetworkInteractionService {
         
     }
     
-    func sendPublicKey(key: Data, toUrl urlString: String, completion: @escaping(Bool) -> Void) {
+    //DONE.
+    func sendPublicKey(key: Data, toUrl urlString: String, sessionId: String, mainURL: String, completion: @escaping(Bool) -> Void) {
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let initialData = InitialData(publicKey: key)
+        let initialData = InitialData(publicKey: key.base64EncodedString(), sessionId: sessionId, mainURL: mainURL)
         do {
             request.httpBody = try JSONEncoder().encode(initialData)
         } catch{
@@ -104,7 +105,6 @@ class NetworkInteractionService {
                 }
             }
         }
-        
         dataTask.resume()
     }
 }
@@ -118,7 +118,16 @@ enum NetworkErrors: Error {
     case wrongFromatOfData
 }
 
-struct InitialData: Encodable {
-    var publicKey: Data
-    let signature: Int = 1
+struct InitialData: Codable {
+    var publicKey: String
+    let sessionId: String
+    let mainURL: String
 }
+
+//TODO: - create one more struct for user data
+
+//struct UserInfo: Codable {
+//    var userData: [UserDataModel]
+//    var proofs: [String]
+//    var signature: String
+//}
