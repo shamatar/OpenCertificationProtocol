@@ -1,0 +1,11 @@
+env: development
+address:
+  internal: 'http://127.0.0.1:7000' # set internal docker address
+  external: 'http://127.0.0.1:7000' # set external address for browser enter
+  test: 'http://127.0.0.1:7000' # set external address for mocha tests
+mongoURI: ''
+dapp:
+  http: 'http://127.0.0.1:8545' # set DApp http provider
+  contract: '0xa96cafdf5e8886fa3db2e97d56b96db8dab53cc4' # set smart-contract address
+  account: '0x8d0c637D69e3cbFf8775adF2DAaFE15669ac5Fe3' # set admin account
+cors: '*'
