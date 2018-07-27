@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <title>Bankex Server</title>
+  <style>
+    .resp {
+      overflow-x: scroll;
+      min-height: 100px;
+    }
+    .pan {
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="pan">
+    <h1>Bankex Server testAPI</h1>
+    <div class="panel-group" id="accordion">
+
+      <!-- Desktop panel -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse0">
+              Desktop API
+            </a>
+          </h4>
+        </div>
+        <div id="collapse0" class="panel-collapse collapse">
+          <div class="panel-body">
+
+            <div class="row">
+              <h3>Get Session</h3>
+              <div class="col-sm-6">
+                <button class="btn btn-success" onClick="getSession()">Send</button>
+              </div>
+              <div class="col-sm-6 resp" id="respGS"></div>
+            </div>
+
+            <div class="row">
+              <h3>Get Fields</h3>
+              <div class="col-sm-6">
+                <button class="btn btn-success" onClick="getFields()">Send</button>
+              </div>
+              <div class="col-sm-6 resp" id="respGF"></div>
+            </div>
+
+            <div class="row">
+              <h3>Post saveFields</h3>
+              <div class="col-sm-6">
+                <div id="fieldsKYC"></div>
+                <button class="btn btn-success" onClick="saveFields()">Send</button>
+              </div>
+              <div class="col-sm-6 resp" id="respSF"></div>
+            </div>
+
+            <div class="row">
+              <h3>Get checkData</h3>
+              <div class="col-sm-6">
+                <button class="btn btn-success" onClick="checkData()">Send</button>
+              </div>
+              <div class="col-sm-6 resp" id="respCD"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Mobile panel -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+              Mobile API
+            </a>
+          </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse">
+          <div class="panel-body">
+
+            <div class="row">
+              <h3>Post setConnection</h3>
+              <div class="col-sm-6">
+                <input class="form-control" type="text" placeholder="sessionId" id="sessId" value="1">
+                <input class="form-control" type="text" placeholder="mainURL" id="mainURL" value="demo">
+                <input class="form-control" type="text" placeholder="publicKey" id="publicKey" value="0x15956353a9b55d2CcfeB71b87265E4d4f2E6c32e">
+                <input class="form-control" type="text" placeholder="signature" id="signature" value="qwe">
+                <button class="btn btn-success" onClick="setConnection()">Send</button>
+              </div>
+              <div class="col-sm-6 resp" id="respSC"></div>
+            </div>
+
+            <div class="row">
+              <h3>Post getData</h3>
+              <div class="col-sm-6">
+                <input class="form-control" type="text" placeholder="sessionId" id="sessId2">
+                <input class="form-control" type="text" placeholder="signature" id="signature2">
+                <button class="btn btn-success" onClick="getData()">Send</button>
+              </div>
+              <div class="col-sm-6 resp" id="respGD"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script src="testAPI.js"></script>
+</body>
+</html>

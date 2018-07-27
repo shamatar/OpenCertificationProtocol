@@ -1,0 +1,17 @@
+env: production
+address:
+  internal: 'http://0.0.0.0:8080'
+  external: 'https://ex.bankex.team'
+  test: 'http://ex.bankex.team:8080'
+mongoURI: ''
+dapp:
+  http: 'http://127.0.0.1:8545'
+  # ws: 'wss://wsprovider.staging.bankex.team:8636'
+  contract: '0xa96cafdf5e8886fa3db2e97d56b96db8dab53cc4'
+  account: '0x8d0c637D69e3cbFf8775adF2DAaFE15669ac5Fe3'
+cors:
+  - 'https://exchange.staging.bankex.team'
+  - 'http://127.0.0.1:7000'
+  - 'http://127.0.0.1:3000'
+  - 'localhost:3000'
+  - 'localhost:7000'
