@@ -1,4 +1,5 @@
 "use strict";
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 const root = require('./helpers.js').root
 const ip = require('ip');
 
@@ -18,16 +19,16 @@ exports.DEV_SERVER_PROXY_CONFIG = {
 }
 
 /**
- * These constants set the source maps that will be used on build. 
- * For info on source map options, go to: 
+ * These constants set the source maps that will be used on build.
+ * For info on source map options, go to:
  * https://webpack.github.io/docs/configuration.html#devtool
  */
 exports.DEV_SOURCE_MAPS = 'eval';
 exports.PROD_SOURCE_MAPS = 'source-map';
 
 /**
- * Set watch options for Dev Server. For better HMR performance, you can 
- * try setting poll to 1000 or as low as 300 and set aggregateTimeout to as low as 0. 
+ * Set watch options for Dev Server. For better HMR performance, you can
+ * try setting poll to 1000 or as low as 300 and set aggregateTimeout to as low as 0.
  * These settings will effect CPU usage, so optimal setting will depend on your dev environment.
  * https://github.com/webpack/docs/wiki/webpack-dev-middleware#watchoptionsaggregatetimeout
  */
@@ -69,6 +70,17 @@ exports.MY_VENDOR_DLLS = [
 
 exports.MY_CLIENT_PLUGINS = [
   // use this to import your own webpack config Client plugins.
+  new CircularDependencyPlugin({
+    // exclude detection of files based on a RegExp
+    exclude: /a\.js|node_modules/,
+    // add errors to webpack instead of warnings
+    failOnError: true,
+    // allow import cycles that include an asyncronous import,
+    // e.g. via import(/* webpackMode: "weak" */ './file.js')
+    allowAsyncCycles: false,
+    // set the current working directory for displaying module paths
+    cwd: process.cwd(),
+  })
 ]
 
 exports.MY_CLIENT_PRODUCTION_PLUGINS = [

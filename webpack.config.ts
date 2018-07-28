@@ -57,6 +57,7 @@ if (DEV_SERVER) {
 }
 
 const CONSTANTS = {
+  CONFIG:  JSON.stringify(require('./app-config/app.config')),
   AOT: AOT,
   ENV: PROD ? JSON.stringify('production') : JSON.stringify('development'),
   HMR: HMR,

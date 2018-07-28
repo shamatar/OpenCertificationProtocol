@@ -11,15 +11,24 @@ export interface UserState {
 }
 
 export const initialState: UserState = {
-  user: { name: 'Honored User' },
+  user: {
+    sessionId: undefined,
+    mainUrl: undefined,
+    serverUrl: undefined,
+    ethAdress: undefined,
+    data: []
+  },
   loading: false,
   loaded: true,
 };
 
 export function userReducer(state = initialState, action: UserActions): UserState {
   switch (action.type) {
-
     case UserActionTypes.EditUser: {
+      console.log({
+        ...state,
+        user: action.payload
+      });
       return {
         ...state,
         user: action.payload

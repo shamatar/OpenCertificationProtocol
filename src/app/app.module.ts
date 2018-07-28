@@ -46,7 +46,9 @@ import { AppState } from './reducers';
 
 export class AppModule {
   constructor(public appRef: ApplicationRef,
-    private _store: Store<AppState>) { }
+    private _store: Store<AppState>) {
+    }
+
 
   hmrOnInit(store) {
     if (!store || !store.rootState) return;

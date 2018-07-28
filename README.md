@@ -1,4 +1,4 @@
-# ...to be or not to be
+# Bankex KYC Demo
 
 ###### You can use npm, but it's recommended to use yarn as it installs a lot faster and has other benefits https://yarnpkg.com/ . Make sure you are using yarn version 0.16.0 or newer (check with 'yarn --version')
 
@@ -28,10 +28,13 @@
 
 ## Project Goals
 
+Show how KYC with blockchain plaing nicely
 
 ## Basic scripts
 
 Use `yarn start` for dev server. Default dev port is `3000`.
+
+Use `yarn api` for api server emulator. Default api port is `4000`.
 
 Use `yarn run start:hmr` to run dev server in HMR mode.
 

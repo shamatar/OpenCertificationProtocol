@@ -1,4 +1,7 @@
 export interface User {
-  readonly id?: number | string;
-  readonly name?: string;
+  readonly sessionId: number | string;
+  readonly mainUrl: string;
+  readonly serverUrl: string;
+  readonly ethAdress: string;
+  readonly data: any[];
 }

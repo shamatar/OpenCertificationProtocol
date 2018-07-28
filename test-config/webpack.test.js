@@ -188,6 +188,7 @@ module.exports = {
     // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
     new DefinePlugin({
       AOT: false,
+      CONFIG:  JSON.stringify(require('../app-config/app.config')),
       ENV: JSON.stringify('test'),
       HMR: false,
       PORT: 3000,

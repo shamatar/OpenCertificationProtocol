@@ -1,8 +1,9 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule, MetaReducer } from '@ngrx/store';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -14,16 +15,17 @@ export const metaReducers: MetaReducer<AppState>[] = ENV === 'development' ?
   [...DEV_REDUCERS, resetOnLogout] : [resetOnLogout];
 
 export const APP_IMPORTS = [
-BrowserAnimationsModule,
+  BrowserAnimationsModule,
   EffectsModule.forRoot([
     RouterEffects,
     UserEffects
   ]),
   NgbModule.forRoot(),
-  ReactiveFormsModule,
+  // FormsModule,
+  // ReactiveFormsModule,
   StoreModule.forRoot(syncReducers, { metaReducers }),
   StoreRouterConnectingModule.forRoot({
     stateKey: 'router' // name of reducer key
   }),
+  SocketIoModule.forRoot((CONFIG as any).sockets as SocketIoConfig)
 ];
-

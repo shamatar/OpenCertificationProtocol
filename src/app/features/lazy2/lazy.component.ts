@@ -1,34 +1,58 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
+import { AppState } from '../../reducers';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { User } from '../../user/user.model';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
-import * as LazyActions from './lazy.actions';
-import { State } from './lazy.reducer';
+import * as UserActions from '../../user/user.actions';
 
 @Component({
-  selector: 'my-lazy',
+  selector: 'my-lazy-2',
   templateUrl: './lazy.component.html'
 })
 
-export class LazyComponent {
+export class LazyComponent  implements OnDestroy, OnInit {
   counter: Observable<number>;
+  destroyed$: Subject<any> = new Subject<any>();
+  form: FormGroup;
+  nameLabel = 'Enter your name';
+  user: User;
+  user$: Observable<User>;
 
   constructor(
-    private store: Store<State>
+    fb: FormBuilder,
+    private store: Store<AppState>
   ) {
-    this.counter = store.select(s => s.lazyModule.lazy.counter);
+    this.form = fb.group({
+      name: ''
+    });
+    this.user$ = this.store.select(state => state.user.user);
+    this.user$.pipe(takeUntil(this.destroyed$))
+      .subscribe(user => { this.user = user; });
   }
 
-  decrement() {
-    this.store.dispatch(new LazyActions.Decrement());
+  clearUserData() {
+    this.store.dispatch(new UserActions.EditUser(
+      Object.assign({}, this.user, { }
+      )));
+
+    this.form.get('name').setValue('');
   }
 
-  increment() {
-    this.store.dispatch(new LazyActions.Increment());
+  submitState() {
+    this.store.dispatch(new UserActions.EditUser(
+      Object.assign({}, this.user, { name: this.form.get('name').value }
+      )));
   }
 
-  reset() {
-    this.store.dispatch(new LazyActions.Reset());
+  ngOnInit() {
+    // this.form.get('name').setValue(this.user.name);
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
   }
 }
