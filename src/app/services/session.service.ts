@@ -1,9 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import { BehaviorSubject, Observable } from '../../../node_modules/rxjs';
-import { HttpClient } from '../../../node_modules/@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { RequestBase } from './request-base';
-import { skip, map } from 'rxjs/operators/';
+import { skip, map } from 'rxjs/operators';
 
 @Injectable()
 export class SessionService extends RequestBase {

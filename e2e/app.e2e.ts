@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-describe('Dashboard', () => {
+describe('Page1', () => {
 
   beforeEach(() => {
     browser.get('/');

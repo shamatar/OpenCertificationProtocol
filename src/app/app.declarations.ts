@@ -1,9 +1,9 @@
-import { DashboardComponent } from './features/dashboard.component';
 import { NotFound404Component } from './not-found404.component';
-import { HelpComponent } from './features/sync/help.component';
+import { SyncComponent } from './features/sync1/sync.component';
+import { HelpComponent } from './features/help/help.component';
 
 export const APP_DECLARATIONS = [
-  DashboardComponent,
+  SyncComponent,
   NotFound404Component,
   HelpComponent
 ];

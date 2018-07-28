@@ -2,15 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import * as UserActions from '../user/user.actions';
+import * as UserActions from '../../user/user.actions';
 
 @Component({
-  selector: 'my-dashboard',
-  templateUrl: './dashboard.component.html',
-  styles: [`#my-logout-button { background: #F44336 }`]
+  selector: 'app-page-1',
+  templateUrl: './sync.component.html',
 })
 
-export class DashboardComponent implements OnDestroy, OnInit {
+export class SyncComponent implements OnDestroy, OnInit {
   destroyed$: Subject<any> = new Subject<any>();
 
   ngOnInit() {

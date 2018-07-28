@@ -1,5 +1,5 @@
 import { CookieService } from 'ngx-cookie-service';
-import { CustomSerializer } from './reducers/index';
+import { CustomSerializer } from './reducers';
 import { RouterStateSerializer } from '@ngrx/router-store';
 import { TransferState } from '@angular/platform-browser';
 import { UserService } from './user/user.service';

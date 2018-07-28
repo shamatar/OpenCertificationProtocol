@@ -1,5 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { QRCodeModule } from 'angularx-qrcode';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule, MetaReducer } from '@ngrx/store';
@@ -27,5 +28,6 @@ export const APP_IMPORTS = [
   StoreRouterConnectingModule.forRoot({
     stateKey: 'router' // name of reducer key
   }),
-  SocketIoModule.forRoot((CONFIG as any).sockets as SocketIoConfig)
+  SocketIoModule.forRoot((CONFIG as any).sockets as SocketIoConfig),
+  QRCodeModule,
 ];

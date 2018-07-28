@@ -4,7 +4,4 @@
     <button *ngFor="let view of views trackBy:trackByIdx" [routerLink]="view.link" class="dropdown-item">{{view.name}}</button>
   </div>
 </div>
-<header class="navbar navbar-static-top">
-  <h2 class="bd-title" id="my-app-title">Demo</h2>
-</header>
 <router-outlet (activate)="activateEvent($event)" (deactivate)="deactivateEvent($event)"></router-outlet>

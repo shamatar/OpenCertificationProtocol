@@ -1,4 +1,4 @@
-import { AppState } from './../../reducers/index';
+import { AppState } from '../../reducers';
 
 import { LazyActions, LazyActionTypes } from './lazy.actions';
 import * as fromRoot from '../../reducers';

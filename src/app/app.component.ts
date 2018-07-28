@@ -8,7 +8,10 @@ import { MOBILE } from './services/constants';
 import * as fromRoot from './reducers';
 import * as UserActions from './user/user.actions';
 import { SessionService } from './services/session.service';
-import { skip, take } from 'rxjs/operators/';
+import { skip, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { User } from './user/user.model';
+// import { take, publishReplay, refCount } from 'rxjs/operators/';
 
 @Component({
   selector: 'my-app',
@@ -21,6 +24,7 @@ export class AppComponent implements AfterViewInit {
   mobile = MOBILE;
   views = views;
   mainUrl: string;
+  user$: Observable<User>;
 
   constructor(
     @Inject('AppConfig') private $config,
@@ -29,8 +33,9 @@ export class AppComponent implements AfterViewInit {
     public $store: Store<fromRoot.AppState>,
     public $session: SessionService,
   ) {
+    this.user$ = this.$store.select(state => state.user.user) // .pipe(publishReplay(1), refCount());
     $session.id$.subscribe(id => {
-      
+      if (id) { this.setInitalState(id, this.mainUrl); }
     });
   }
 
@@ -48,6 +53,14 @@ export class AppComponent implements AfterViewInit {
 
   logout() {
     this.$store.dispatch(new UserActions.Logout());
+  }
+
+  setInitalState(sessionId, mainUrl) {
+    this.user$.pipe(take(1)).subscribe(user => {
+      this.$store.dispatch(
+        new UserActions.EditUser(Object.assign({}, user, { sessionId, mainUrl }))
+      );
+    });
   }
 
   public ngAfterViewInit() {

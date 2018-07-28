@@ -31,6 +31,10 @@ io.sockets.on('connection', function(socket) {
       socket.join(room);
       console.log(`Room ${room} activated`)
   });
+  socket.in(room).on('simulate_confirmation', function (data) {
+    console.log('Simulating confirmation');
+    socket.in(room).emit('confirm', 'simulation');
+  });
 });
 
 // now, it's easy to send a message to just the clients in a given room
@@ -43,11 +47,9 @@ io.sockets.in('foobar').emit('message', 'anyone in this room yet?');
 io.sockets.on('connection', function (socket) {
   console.log('Socket connection estableshed...');
   socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+
   socket.on('disconnect', function () {
-    console.log('user disconnected');
+    console.log('User disconnected');
   });
 });
 // #endregion

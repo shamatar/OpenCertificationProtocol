@@ -87,6 +87,7 @@
     "@ngrx/router-store": "6.0.1",
     "@ngrx/store": "6.0.1",
     "@ngrx/store-devtools": "6.0.1",
+    "angularx-qrcode": "^1.1.7",
     "bootstrap": "4.1.1",
     "core-js": "2.5.7",
     "ngrx-store-freeze": "~0.2.3",
