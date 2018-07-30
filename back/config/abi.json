@@ -1,0 +1,250 @@
+[
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "_cert",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "_state",
+        "type": "uint8"
+      }
+    ],
+    "name": "UpdateCertificate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "_cert",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "_owner",
+        "type": "address"
+      }
+    ],
+    "name": "CreateCertificate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_cert",
+        "type": "uint256"
+      },
+      {
+        "name": "_owner",
+        "type": "address"
+      },
+      {
+        "name": "_expiredDate",
+        "type": "uint256"
+      }
+    ],
+    "name": "createCertificate",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_cert",
+        "type": "uint256"
+      },
+      {
+        "name": "_code",
+        "type": "uint256"
+      }
+    ],
+    "name": "addRevokeHashCode",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_cert",
+        "type": "uint256"
+      },
+      {
+        "name": "_state",
+        "type": "uint8"
+      }
+    ],
+    "name": "updateCertificateState",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_cert",
+        "type": "uint256"
+      },
+      {
+        "name": "_certRevokeCode",
+        "type": "uint256"
+      }
+    ],
+    "name": "revokePermanentlyCertificate",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_cert",
+        "type": "uint256"
+      }
+    ],
+    "name": "getCertState",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_cert",
+        "type": "uint256"
+      }
+    ],
+    "name": "getCertOwner",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_cert",
+        "type": "uint256"
+      },
+      {
+        "name": "_hash",
+        "type": "bytes32"
+      },
+      {
+        "name": "_v",
+        "type": "uint8"
+      },
+      {
+        "name": "_r",
+        "type": "bytes32"
+      },
+      {
+        "name": "_s",
+        "type": "bytes32"
+      }
+    ],
+    "name": "checkSignature",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

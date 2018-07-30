@@ -1,0 +1,6 @@
+module Pods_KYCApp {
+  umbrella header "Pods-KYCApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

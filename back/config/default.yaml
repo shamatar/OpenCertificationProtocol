@@ -1,0 +1,6 @@
+intervals:
+  dapp:
+    reconnection: 10000
+    checkConnection: 120000
+    refreshInitList: 1200000
+    expiredTime: 600000

@@ -1,0 +1,512 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00208FE12104674D00988403 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00208FE02104674D00988403 /* AppDelegate.swift */; };
+		00208FE32104674D00988403 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00208FE22104674D00988403 /* ImportViewController.swift */; };
+		00208FE62104674D00988403 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00208FE42104674D00988403 /* Main.storyboard */; };
+		00208FE82104674E00988403 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00208FE72104674E00988403 /* Assets.xcassets */; };
+		00208FEB2104674E00988403 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00208FE92104674E00988403 /* LaunchScreen.storyboard */; };
+		0020901121047E3100988403 /* ImportFromTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020901021047E3100988403 /* ImportFromTextViewController.swift */; };
+		0020901321047E4D00988403 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020901221047E4D00988403 /* ProfileViewController.swift */; };
+		0020901621047EDA00988403 /* SendDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020901521047EDA00988403 /* SendDataViewController.swift */; };
+		0020901A2104819500988403 /* InformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002090192104819500988403 /* InformationCell.swift */; };
+		0020901D210497FD00988403 /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020901C210497FD00988403 /* UserDataModel.swift */; };
+		0020902021049D9A00988403 /* ParsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020901F21049D9A00988403 /* ParsersService.swift */; };
+		0020902221049DA700988403 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020902121049DA700988403 /* NetworkingService.swift */; };
+		002090242104A6D200988403 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002090232104A6D200988403 /* SettingsViewController.swift */; };
+		002090262104BB8C00988403 /* LocalStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002090252104BB8C00988403 /* LocalStorageService.swift */; };
+		002090292104C2D800988403 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 002090272104C2D800988403 /* CoreDataModel.xcdatamodeld */; };
+		0020902B2104D3B900988403 /* QRCodeDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020902A2104D3B900988403 /* QRCodeDataModels.swift */; };
+		0020902F2105E14300988403 /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020902E2105E14300988403 /* Hashing.swift */; };
+		002090322105E16E00988403 /* PaddableTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002090312105E16E00988403 /* PaddableTree.swift */; };
+		0020903421061D4600988403 /* Web3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020903321061D4600988403 /* Web3Service.swift */; };
+		394D1672A245E689CB927967 /* libPods-KYCApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC3D3C7418093F4D5911DCD /* libPods-KYCApp.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00208FDD2104674D00988403 /* KYCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KYCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00208FE02104674D00988403 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		00208FE22104674D00988403 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
+		00208FE52104674D00988403 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		00208FE72104674E00988403 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00208FEA2104674E00988403 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		00208FEC2104674E00988403 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0020901021047E3100988403 /* ImportFromTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportFromTextViewController.swift; sourceTree = "<group>"; };
+		0020901221047E4D00988403 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0020901521047EDA00988403 /* SendDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataViewController.swift; sourceTree = "<group>"; };
+		002090192104819500988403 /* InformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCell.swift; sourceTree = "<group>"; };
+		0020901C210497FD00988403 /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
+		0020901F21049D9A00988403 /* ParsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsersService.swift; sourceTree = "<group>"; };
+		0020902121049DA700988403 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		002090232104A6D200988403 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		002090252104BB8C00988403 /* LocalStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageService.swift; sourceTree = "<group>"; };
+		002090282104C2D800988403 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		0020902A2104D3B900988403 /* QRCodeDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeDataModels.swift; sourceTree = "<group>"; };
+		0020902E2105E14300988403 /* Hashing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hashing.swift; sourceTree = "<group>"; };
+		002090312105E16E00988403 /* PaddableTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddableTree.swift; sourceTree = "<group>"; };
+		0020903321061D4600988403 /* Web3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3Service.swift; sourceTree = "<group>"; };
+		1AC3D3C7418093F4D5911DCD /* libPods-KYCApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KYCApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		355CABDFFC1C5B8D317E4CCF /* Pods-KYCApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KYCApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KYCApp/Pods-KYCApp.debug.xcconfig"; sourceTree = "<group>"; };
+		FC9397007A7136850D00FC5E /* Pods-KYCApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KYCApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-KYCApp/Pods-KYCApp.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00208FDA2104674D00988403 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				394D1672A245E689CB927967 /* libPods-KYCApp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00208FD42104674D00988403 = {
+			isa = PBXGroup;
+			children = (
+				00208FDF2104674D00988403 /* KYCApp */,
+				00208FDE2104674D00988403 /* Products */,
+				85BCAC9CC9F4807B7641013E /* Pods */,
+				A8AF7BB3CF1AEFA1A9A35644 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		00208FDE2104674D00988403 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00208FDD2104674D00988403 /* KYCApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00208FDF2104674D00988403 /* KYCApp */ = {
+			isa = PBXGroup;
+			children = (
+				0020902C2105E0D700988403 /* MerkleTree */,
+				0020901E21049D3900988403 /* Services */,
+				0020901B210497E700988403 /* Model */,
+				002090182104817A00988403 /* View */,
+				0020901421047E6700988403 /* Controllers */,
+				00208FE02104674D00988403 /* AppDelegate.swift */,
+				00208FE42104674D00988403 /* Main.storyboard */,
+				00208FE72104674E00988403 /* Assets.xcassets */,
+				00208FE92104674E00988403 /* LaunchScreen.storyboard */,
+				00208FEC2104674E00988403 /* Info.plist */,
+				002090272104C2D800988403 /* CoreDataModel.xcdatamodeld */,
+			);
+			path = KYCApp;
+			sourceTree = "<group>";
+		};
+		0020901421047E6700988403 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				00208FE22104674D00988403 /* ImportViewController.swift */,
+				0020901021047E3100988403 /* ImportFromTextViewController.swift */,
+				0020901221047E4D00988403 /* ProfileViewController.swift */,
+				0020901521047EDA00988403 /* SendDataViewController.swift */,
+				002090232104A6D200988403 /* SettingsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		002090182104817A00988403 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				002090192104819500988403 /* InformationCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0020901B210497E700988403 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0020901C210497FD00988403 /* UserDataModel.swift */,
+				0020902A2104D3B900988403 /* QRCodeDataModels.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0020901E21049D3900988403 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0020901F21049D9A00988403 /* ParsersService.swift */,
+				0020902121049DA700988403 /* NetworkingService.swift */,
+				002090252104BB8C00988403 /* LocalStorageService.swift */,
+				0020903321061D4600988403 /* Web3Service.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		0020902C2105E0D700988403 /* MerkleTree */ = {
+			isa = PBXGroup;
+			children = (
+				002090302105E15200988403 /* PaddableTree */,
+				0020902D2105E12D00988403 /* Utils */,
+			);
+			path = MerkleTree;
+			sourceTree = "<group>";
+		};
+		0020902D2105E12D00988403 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0020902E2105E14300988403 /* Hashing.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		002090302105E15200988403 /* PaddableTree */ = {
+			isa = PBXGroup;
+			children = (
+				002090312105E16E00988403 /* PaddableTree.swift */,
+			);
+			path = PaddableTree;
+			sourceTree = "<group>";
+		};
+		85BCAC9CC9F4807B7641013E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				355CABDFFC1C5B8D317E4CCF /* Pods-KYCApp.debug.xcconfig */,
+				FC9397007A7136850D00FC5E /* Pods-KYCApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A8AF7BB3CF1AEFA1A9A35644 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1AC3D3C7418093F4D5911DCD /* libPods-KYCApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00208FDC2104674D00988403 /* KYCApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00208FEF2104674E00988403 /* Build configuration list for PBXNativeTarget "KYCApp" */;
+			buildPhases = (
+				1BDD128FCFCB5E91087F6F41 /* [CP] Check Pods Manifest.lock */,
+				00208FD92104674D00988403 /* Sources */,
+				00208FDA2104674D00988403 /* Frameworks */,
+				00208FDB2104674D00988403 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KYCApp;
+			productName = KYCApp;
+			productReference = 00208FDD2104674D00988403 /* KYCApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00208FD52104674D00988403 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Георгий Фесенко";
+				TargetAttributes = {
+					00208FDC2104674D00988403 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 00208FD82104674D00988403 /* Build configuration list for PBXProject "KYCApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 00208FD42104674D00988403;
+			productRefGroup = 00208FDE2104674D00988403 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00208FDC2104674D00988403 /* KYCApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00208FDB2104674D00988403 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00208FEB2104674E00988403 /* LaunchScreen.storyboard in Resources */,
+				00208FE82104674E00988403 /* Assets.xcassets in Resources */,
+				00208FE62104674D00988403 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1BDD128FCFCB5E91087F6F41 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KYCApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00208FD92104674D00988403 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0020903421061D4600988403 /* Web3Service.swift in Sources */,
+				0020902021049D9A00988403 /* ParsersService.swift in Sources */,
+				0020901A2104819500988403 /* InformationCell.swift in Sources */,
+				002090292104C2D800988403 /* CoreDataModel.xcdatamodeld in Sources */,
+				00208FE32104674D00988403 /* ImportViewController.swift in Sources */,
+				002090242104A6D200988403 /* SettingsViewController.swift in Sources */,
+				0020902221049DA700988403 /* NetworkingService.swift in Sources */,
+				002090322105E16E00988403 /* PaddableTree.swift in Sources */,
+				0020902F2105E14300988403 /* Hashing.swift in Sources */,
+				0020901D210497FD00988403 /* UserDataModel.swift in Sources */,
+				0020901121047E3100988403 /* ImportFromTextViewController.swift in Sources */,
+				0020901321047E4D00988403 /* ProfileViewController.swift in Sources */,
+				00208FE12104674D00988403 /* AppDelegate.swift in Sources */,
+				0020901621047EDA00988403 /* SendDataViewController.swift in Sources */,
+				0020902B2104D3B900988403 /* QRCodeDataModels.swift in Sources */,
+				002090262104BB8C00988403 /* LocalStorageService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		00208FE42104674D00988403 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00208FE52104674D00988403 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		00208FE92104674E00988403 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00208FEA2104674E00988403 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00208FED2104674E00988403 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		00208FEE2104674E00988403 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		00208FF02104674E00988403 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 355CABDFFC1C5B8D317E4CCF /* Pods-KYCApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U8FZ3UYF69;
+				INFOPLIST_FILE = KYCApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bankex.KYCApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		00208FF12104674E00988403 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC9397007A7136850D00FC5E /* Pods-KYCApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U8FZ3UYF69;
+				INFOPLIST_FILE = KYCApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bankex.KYCApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00208FD82104674D00988403 /* Build configuration list for PBXProject "KYCApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00208FED2104674E00988403 /* Debug */,
+				00208FEE2104674E00988403 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00208FEF2104674E00988403 /* Build configuration list for PBXNativeTarget "KYCApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00208FF02104674E00988403 /* Debug */,
+				00208FF12104674E00988403 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		002090272104C2D800988403 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				002090282104C2D800988403 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 002090282104C2D800988403 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 00208FD52104674D00988403 /* Project object */;
+}
