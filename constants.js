@@ -89,6 +89,16 @@ exports.MY_CLIENT_PRODUCTION_PLUGINS = [
 
 exports.MY_CLIENT_RULES = [
   // use this to import your own rules for Client webpack config.
+  {
+    test: /\.s(a|c)ss$/, // .sass || .scss
+    loader: 'style-loader!css-loader!sass-loader',
+    include: [root('src', 'app', 'styles')]
+  },
+  {
+    test: /\.scss$/,
+    use: ['to-string-loader', 'css-loader', 'sass-loader'],
+    exclude: [root('src', 'app', 'styles')]
+  },
 ]
 
 exports.MY_TEST_RULES = [

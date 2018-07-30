@@ -15,7 +15,7 @@ import { User } from './user/user.model';
 
 @Component({
   selector: 'my-app',
-  styleUrls: ['main.scss', './app.component.scss'],
+  // styleUrls: ['main.scss', './app.component.scss'],
   templateUrl: './app.component.html',
   encapsulation: ViewEncapsulation.None
 })
@@ -33,9 +33,18 @@ export class AppComponent implements AfterViewInit {
     public $store: Store<fromRoot.AppState>,
     public $session: SessionService,
   ) {
-    this.user$ = this.$store.select(state => state.user.user) // .pipe(publishReplay(1), refCount());
+    this.user$ = this.$store.select(state => state.user.user); // .pipe(publishReplay(1), refCount());
     $session.id$.subscribe(id => {
-      if (id) { this.setInitalState(id, this.mainUrl); }
+      if (id) { this.setInitalState(id, this.mainUrl, $config.serverUrl); }
+    });
+    $session.msg$.subscribe(msg => {
+      switch (msg) {
+        case 'confirmation':
+          this.$router.navigate(['/lazy2']);
+          break;
+        default:
+          console.error('Unkown session message!');
+      }
     });
   }
 
@@ -55,10 +64,10 @@ export class AppComponent implements AfterViewInit {
     this.$store.dispatch(new UserActions.Logout());
   }
 
-  setInitalState(sessionId, mainUrl) {
+  setInitalState(sessionId, mainUrl, serverUrl) {
     this.user$.pipe(take(1)).subscribe(user => {
       this.$store.dispatch(
-        new UserActions.EditUser(Object.assign({}, user, { sessionId, mainUrl }))
+        new UserActions.EditUser(Object.assign({}, user, { sessionId, mainUrl, serverUrl }))
       );
     });
   }

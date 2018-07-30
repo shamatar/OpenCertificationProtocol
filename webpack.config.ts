@@ -139,10 +139,10 @@ const clientConfig = function webpackConfig(): WebpackConfig {
       },
       { test: /\.html/, loader: 'raw-loader', exclude: [root('src/index.html')] },
       { test: /\.css$/, loader: 'raw-loader' },
-      {
-        test: /\.scss$/,
-        loaders: ['to-string-loader', 'css-loader', 'sass-loader']
-      },
+      // {
+      //   test: /\.scss$/,
+      //   loaders: ['to-string-loader', 'css-loader', 'sass-loader']
+      // },
       ...MY_CLIENT_RULES
     ]
   };
@@ -222,6 +222,7 @@ const clientConfig = function webpackConfig(): WebpackConfig {
   PROD ? config.devtool = PROD_SOURCE_MAPS : config.devtool = DEV_SOURCE_MAPS;
 
   if (DLL) {
+    console.log('=========================== DLL ============================');
     config.entry = {
       app_assets: ['./src/main.browser'],
       polyfill: [
@@ -246,8 +247,9 @@ const clientConfig = function webpackConfig(): WebpackConfig {
       vendor: [...DLL_VENDORS]
     };
   } else {
+    console.log('=========================== NO DLL ============================');
     config.entry = {
-      main: root('./src/main.browser.ts')
+      main: [root('./src/main.browser.ts'), root('./src/app/styles/styles.scss')]
     };
   }
 

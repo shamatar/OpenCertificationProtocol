@@ -10,7 +10,7 @@ import { takeUntil } from 'rxjs/operators';
 import * as UserActions from '../../user/user.actions';
 
 @Component({
-  selector: 'my-lazy-2',
+  selector: 'app-page-2',
   templateUrl: './lazy.component.html'
 })
 

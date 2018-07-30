@@ -3,7 +3,7 @@ const api = base + ':4000';
 
 module.exports = {
   mainUrl: base,
-  apiUrl: api,
+  serverUrl: api,
   sockets: { url: api, options: {}},
   // Set intervals in miliseconds
   intervals: {

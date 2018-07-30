@@ -31,15 +31,25 @@ io.sockets.on('connection', function(socket) {
       socket.join(room);
       console.log(`Room ${room} activated`)
   });
-  socket.in(room).on('simulate_confirmation', function (data) {
-    console.log('Simulating confirmation');
-    socket.in(room).emit('confirm', 'simulation');
+  // socket.in(room).on('simulate_confirmation', function (data) {
+  //   console.log('Simulating confirmation');
+  //   socket.in(room).emit('confirm', 'simulation');
+  // });
+  socket.on('session', function (data) {
+    // console.log('Simulating confirmation');
+    console.log("room---->"+data.room, "msg---->"+data.msg);
+    if (data.room === room && data.msg === 'simulate_confirmation') {
+      io.sockets.in(room).emit('session', data.msg);
+    } else {
+      console.log('Unknown data in room', data.room)
+    }
   });
 });
 
 // now, it's easy to send a message to just the clients in a given room
 room = sessionId;
-io.sockets.in(room).emit('message', 'what is going on, party people?');
+io.sockets.in(room).emit('message', 'what is going on, party people? You should not see this!');
+io.sockets.in(room).emit('session', 'Session test message.');
 
 // this message will NOT go to the client defined above
 io.sockets.in('foobar').emit('message', 'anyone in this room yet?');
@@ -52,6 +62,7 @@ io.sockets.on('connection', function (socket) {
     console.log('User disconnected');
   });
 });
+
 // #endregion
 
 server.listen(port, () => {

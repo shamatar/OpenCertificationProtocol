@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { RequestBase } from './request-base';
 import { skip, map } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { skip, map } from 'rxjs/operators';
 export class SessionService extends RequestBase {
 
   readonly id$ = new BehaviorSubject(undefined);
+  readonly msg$ = new Subject();
 
   constructor(
     @Inject('AppConfig') private config,
@@ -19,9 +20,17 @@ export class SessionService extends RequestBase {
     socket.on('disconnect', () => { this.id$.next(undefined); });
     socket.on('connect', () => {
       this.getSession().subscribe(sessionId => {
-        this.joinRoom(JSON.parse(sessionId).id);
+        sessionId = JSON.parse(sessionId).id;
+        this.joinRoom(sessionId);
         this.id$.next(sessionId);
       });
+    });
+    socket.on('session', (msg) => {
+      if (msg === 'simulate_confirmation') {
+        this.msg$.next('confirmation');
+      } else {
+        console.error('Unknown message:', msg);
+      }
     });
     this.id$.pipe(skip(1)).subscribe(value => {
       console.log(`Socket connection ${value ? 'estableshed' : 'closed'}`);
@@ -37,12 +46,17 @@ export class SessionService extends RequestBase {
     this.socket.disconnect();
   }
 
-  sendMessage(msg: string) {
-      this.socket.emit('message', msg);
+  sendMessage(msg: string, event?: string) {
+      if (!this.id$.value) { console.error('No session Id!'); return; }
+      if (!event) {
+        this.socket.emit('session', { room: this.id$.value, msg: msg});
+      } else {
+        this.socket.emit(event, msg);
+      }
   }
 
   getSession(): Observable<any> {
-    return this.http.get(`${this.config.apiUrl}/getSession`, {...this.optionsNoPre, responseType: 'text'});
+    return this.http.get(`${this.config.serverUrl}/getSession`, {...this.optionsNoPre, responseType: 'text'});
   }
 
   // start(mainUrl?: string) {
@@ -51,7 +65,11 @@ export class SessionService extends RequestBase {
 
   getMessage() {
     return this.socket
-      .fromEvent('message')
+      .fromEvent('session')
       .pipe(map((data: any) => data.msg));
+  }
+
+  simulateConfirmation() {
+    this.sendMessage('simulate_confirmation');
   }
 }
