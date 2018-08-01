@@ -10,8 +10,8 @@ import web3swift
 //TODO: - ....
 class NetworkInteractionService {
     //This is a method for getting data from the link and than delete that data in the server
-    func retrieveData(fromUrl urlString: String, completion: @escaping(Result<[UserDataModel]>) -> Void) {
-        guard let url = URL(string: urlString) else { return }
+    func retrieveData(model: QRCodeGetDataModel, completion: @escaping(Result<[UserDataModel]>) -> Void) {
+        guard let url = URL(string: model.address) else { return }
         let request = URLRequest(url: url)
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
@@ -76,12 +76,12 @@ class NetworkInteractionService {
     }
     
     //DONE.
-    func sendPublicKey(key: Data, toUrl urlString: String, sessionId: String, mainURL: String, completion: @escaping(Bool) -> Void) {
-        guard let url = URL(string: urlString) else { return }
+    func sendPublicKey(key: Data, model: QRCodeSendKeyModel, completion: @escaping(Bool) -> Void) {
+        guard let url = URL(string: model.address) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let initialData = InitialData(publicKey: key.base64EncodedString(), sessionId: sessionId, mainURL: mainURL)
+        let initialData = InitialData(publicKey: key.base64EncodedString(), sessionId: model.sessionId, mainURL: model.mainURL)
         do {
             request.httpBody = try JSONEncoder().encode(initialData)
         } catch{
@@ -102,6 +102,15 @@ class NetworkInteractionService {
         }
         dataTask.resume()
     }
+    
+    func signData(data: Data) -> Data? {
+        guard let data = UserDefaults.standard.data(forKey: "keyData") else { return nil }
+        guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return nil }
+        guard let keystore = EthereumKeystoreV3(data) else { return nil }
+        guard let privateKey = try? keystore.UNSAFE_getPrivateKeyData(password: "BANKEXFOUNDATION", account: EthereumAddress(address)!) else { return nil }
+        let signature = SECP256K1.signForRecovery(hash: data.sha256(), privateKey: privateKey)
+        return signature.serializedSignature
+    }
 }
 
 enum Result<T> {
@@ -115,14 +124,7 @@ enum NetworkErrors: Error {
 
 struct InitialData: Codable {
     var publicKey: String
-    let sessionId: String
+    let sessionId: Int
     let mainURL: String
 }
 
-//TODO: - create one more struct for user data
-
-//struct UserInfo: Codable {
-//    var userData: [UserDataModel]
-//    var proofs: [String]
-//    var signature: String
-//}

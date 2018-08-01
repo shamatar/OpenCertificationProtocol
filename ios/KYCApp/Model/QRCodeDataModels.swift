@@ -9,8 +9,13 @@ struct QRCodeDataModel: Codable {
     let typeIDs: [String]
 }
 
-struct QRCodeForSendingPublicKeyModel: Codable {
-    let address: String
+struct QRCodeSendKeyModel: Codable {
     let mainURL: String
-    let sessionId: String
+    let sessionId: Int
+    let address: String
+}
+
+struct QRCodeGetDataModel: Codable {
+    let sessionId: Int
+    let address: String
 }

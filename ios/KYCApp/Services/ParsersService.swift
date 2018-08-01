@@ -25,11 +25,11 @@ class ParserService {
         }
     }
     
-    //TODO: - this is not working correctly
-    func parseQRBeforeSetConnection(data: String) -> QRCodeForSendingPublicKeyModel? {
-        guard let dataBinary = data.data(using: .utf8) else { return nil }
+    
+    func parseQRCode<T: Codable>(data: String) -> T? {
+        guard let data = data.data(using: .utf8) else { return nil }
         do {
-            let normalData = try JSONDecoder().decode(QRCodeForSendingPublicKeyModel.self, from: dataBinary)
+            let normalData = try JSONDecoder().decode(T.self, from: data)
             return normalData
         } catch {
             print(error)

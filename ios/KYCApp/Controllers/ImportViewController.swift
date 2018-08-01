@@ -35,13 +35,13 @@ class ImportViewController: UIViewController {
         descriptionLabel.isHidden = false
         
         //This is a way to let that controller know whether it was loaded from deeplink or not
-        if let urlString = urlString {
-            dataRetrieving(withUrl: urlString)
-            
-        } else {
-            importCertificateButton.isHidden = false
-            descriptionLabel.isHidden = false
-        }
+//        if let urlString = urlString {
+//            dataRetrieving(model: )
+//
+//        } else {
+//            importCertificateButton.isHidden = false
+//            descriptionLabel.isHidden = false
+//        }
     }
     
     func showAllert(data: [UserDataModel]) {
@@ -65,12 +65,12 @@ class ImportViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func dataRetrieving(withUrl urlString: String) {
+    func dataRetrieving(model: QRCodeGetDataModel) {
         importCertificateButton.isHidden = true
         descriptionLabel.isHidden = true
         spinner.isHidden = false
         spinner.startAnimating()
-        networkService.retrieveData(fromUrl: urlString) { (result) in
+        networkService.retrieveData(model: model) { (result) in
             self.spinner.stopAnimating()
             self.spinner.isHidden = true
             self.descriptionLabel.isHidden = false
@@ -120,15 +120,14 @@ extension ImportViewController: QRCodeReaderViewControllerDelegate {
         switch qrType {
         //MARK: - Retrieving data by sessionId?
         case .importQR:
-            let sessionId = result.value
-            dataRetrieving(withUrl: sessionId)
+            guard let model: QRCodeGetDataModel = parser.parseQRCode(data: result.value) else { return }
+            dataRetrieving(model: model)
 
         //MARK: - scan QR and send data(pubKey + sign) to received url
         case .sendKey:
-            guard let model = parser.parseQRBeforeSetConnection(data: result.value) else { return }
-            let urlString = model.address + "api/mobile/setConnection"
+            guard let model: QRCodeSendKeyModel = parser.parseQRCode(data: result.value) else { return }
             guard let key = UserDefaults.standard.data(forKey: "publicKey") else { return }
-            networkService.sendPublicKey(key: key, toUrl: urlString, sessionId: model.sessionId, mainURL: model.mainURL) { (success) in
+            networkService.sendPublicKey(key: key, model: model) { (success) in
                 self.spinner.stopAnimating()
                 self.spinner.isHidden = true
                 self.descriptionLabel.isHidden = false
