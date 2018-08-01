@@ -80,8 +80,11 @@ class NetworkInteractionService {
         guard let url = URL(string: model.address) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        request.httpShouldHandleCookies = true
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let initialData = InitialData(publicKey: key.base64EncodedString(), sessionId: model.sessionId, mainURL: model.mainURL)
+        request.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36", forHTTPHeaderField: "User-Agent")
+
+        let initialData = InitialData(publicKey: key.base64EncodedString(), sessionId: model.sessionId, mainURL: model.mainURL, signature: "sign")
         do {
             request.httpBody = try JSONEncoder().encode(initialData)
         } catch{
@@ -89,6 +92,7 @@ class NetworkInteractionService {
         }
         
         let dataTask = URLSession.shared.dataTask(with: request) { (data1, response, error) in
+            print(error)
             if error != nil {
                 DispatchQueue.main.async {
                     completion(false)
@@ -124,7 +128,8 @@ enum NetworkErrors: Error {
 
 struct InitialData: Codable {
     var publicKey: String
-    let sessionId: Int
+    let sessionId: String
     let mainURL: String
+    let signature: String
 }
 
