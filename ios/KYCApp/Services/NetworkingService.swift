@@ -21,14 +21,13 @@ class NetworkInteractionService {
                 return
             }
             do {
-                if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String:String]] {
+                if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:String] {
                     var res = [UserDataModel]()
-                    for el in json {
-                        for (key, value) in el {
-                            res.append(
-                                UserDataModel(typeID: key, detail: value)
-                            )
-                        }
+                    
+                    for (key, value) in json {
+                        res.append(
+                            UserDataModel(typeID: key, detail: value)
+                        )
                     }
                     DispatchQueue.main.async {
                         completion(Result.success(res))

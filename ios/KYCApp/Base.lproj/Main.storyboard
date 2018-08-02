@@ -54,7 +54,7 @@
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYW-NH-die">
-                                <rect key="frame" x="110" y="575" width="155" height="32"/>
+                                <rect key="frame" x="60" y="575" width="255" height="32"/>
                                 <state key="normal" title="SEND PUBLIC KEY"/>
                                 <connections>
                                     <action selector="sendPublicKeyButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Jc-NC-6NA"/>
@@ -66,14 +66,14 @@
                             <constraint firstAttribute="trailing" secondItem="Lml-9b-RtQ" secondAttribute="trailing" constant="40" id="1Tc-3p-Ywb"/>
                             <constraint firstItem="tUh-Dl-ZIJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="G0F-0h-zOT"/>
                             <constraint firstItem="RQW-cB-CMP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="Gxe-yg-fM1"/>
-                            <constraint firstItem="IYW-NH-die" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="MPs-uz-Js7"/>
+                            <constraint firstItem="IYW-NH-die" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="MPs-uz-Js7"/>
                             <constraint firstItem="Lml-9b-RtQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="MpV-bg-qe1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ac2-oC-qlu" secondAttribute="trailing" constant="60" id="NeV-v2-TNv"/>
                             <constraint firstItem="RQW-cB-CMP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S8F-3L-uze"/>
                             <constraint firstItem="Lml-9b-RtQ" firstAttribute="top" secondItem="WeW-2e-NEQ" secondAttribute="bottom" constant="20" id="Xez-ka-N2D"/>
                             <constraint firstItem="IYW-NH-die" firstAttribute="top" secondItem="ac2-oC-qlu" secondAttribute="bottom" constant="8" id="Xp7-tp-3Zn"/>
                             <constraint firstItem="Lml-9b-RtQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Y72-Dp-crI"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IYW-NH-die" secondAttribute="trailing" constant="110" id="k95-fh-Hvv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IYW-NH-die" secondAttribute="trailing" constant="60" id="k95-fh-Hvv"/>
                             <constraint firstItem="ac2-oC-qlu" firstAttribute="top" secondItem="tUh-Dl-ZIJ" secondAttribute="bottom" constant="8" id="kIZ-cx-HKC"/>
                             <constraint firstItem="ac2-oC-qlu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Lml-9b-RtQ" secondAttribute="bottom" constant="20" id="kgv-rZ-cP8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ac2-oC-qlu" secondAttribute="bottom" constant="100" id="mPt-p2-kml"/>
