@@ -12,7 +12,16 @@ class NetworkInteractionService {
     //This is a method for getting data from the link and than delete that data in the server
     func retrieveData(model: QRCodeGetDataModel, completion: @escaping(Result<[UserDataModel]>) -> Void) {
         guard let url = URL(string: model.address) else { return }
-        let request = URLRequest(url: url)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let initialData = GetDataPOSTBody(sessionId: model.sessionId, signature: "sign")
+        do {
+            request.httpBody = try JSONEncoder().encode(initialData)
+        } catch{
+            completion(Result.error(error))
+        }
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 DispatchQueue.main.async {
@@ -79,10 +88,7 @@ class NetworkInteractionService {
         guard let url = URL(string: model.address) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.httpShouldHandleCookies = true
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36", forHTTPHeaderField: "User-Agent")
-
         let initialData = InitialData(publicKey: key.base64EncodedString(), sessionId: model.sessionId, mainURL: model.mainURL, signature: "sign")
         do {
             request.httpBody = try JSONEncoder().encode(initialData)
@@ -129,6 +135,11 @@ struct InitialData: Codable {
     var publicKey: String
     let sessionId: String
     let mainURL: String
+    let signature: String
+}
+
+struct GetDataPOSTBody: Codable {
+    let sessionId: String
     let signature: String
 }
 
