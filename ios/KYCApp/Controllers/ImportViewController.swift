@@ -14,6 +14,8 @@ class ImportViewController: UIViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var importCertificateButton: UIButton!
+    @IBOutlet weak var sendPublicKeyButton: RoundedButton!
+    
     
     var urlString: String?
     let networkService = NetworkInteractionService()
@@ -28,12 +30,12 @@ class ImportViewController: UIViewController {
     }()
     
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        spinner.isHidden = true
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        spinner.isHidden = true
-        importCertificateButton.isHidden = false
-        descriptionLabel.isHidden = false
-        
         //This is a way to let that controller know whether it was loaded from deeplink or not
 //        if let urlString = urlString {
 //            dataRetrieving(model: )
@@ -75,6 +77,7 @@ class ImportViewController: UIViewController {
             self.spinner.isHidden = true
             self.descriptionLabel.isHidden = false
             self.importCertificateButton.isHidden = false
+            self.sendPublicKeyButton.isHidden = false
             self.urlString = nil
             switch result {
             case .error(let error):
@@ -114,6 +117,7 @@ extension ImportViewController: QRCodeReaderViewControllerDelegate {
         reader.stopScanning()
         importCertificateButton.isHidden = true
         descriptionLabel.isHidden = true
+        sendPublicKeyButton.isHidden = true
         spinner.isHidden = false
         spinner.startAnimating()
         dismiss(animated: true, completion: nil)
@@ -127,11 +131,13 @@ extension ImportViewController: QRCodeReaderViewControllerDelegate {
         case .sendKey:
             guard let model: QRCodeSendKeyModel = parser.parseQRCode(data: result.value) else { return }
             guard let key = UserDefaults.standard.data(forKey: "publicKey") else { return }
+            
             networkService.sendPublicKey(key: key, model: model) { (success) in
                 self.spinner.stopAnimating()
                 self.spinner.isHidden = true
                 self.descriptionLabel.isHidden = false
                 self.importCertificateButton.isHidden = false
+                self.sendPublicKeyButton.isHidden = false
                 if success {
                     self.showAllert(message: "Your public key was successfully sent.")
                 } else {

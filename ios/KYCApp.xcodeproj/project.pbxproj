@@ -26,6 +26,7 @@
 		0020902F2105E14300988403 /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020902E2105E14300988403 /* Hashing.swift */; };
 		002090322105E16E00988403 /* PaddableTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002090312105E16E00988403 /* PaddableTree.swift */; };
 		0020903421061D4600988403 /* Web3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020903321061D4600988403 /* Web3Service.swift */; };
+		00B17CDA211850A400EFC16C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B17CD9211850A400EFC16C /* RoundedButton.swift */; };
 		394D1672A245E689CB927967 /* libPods-KYCApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC3D3C7418093F4D5911DCD /* libPods-KYCApp.a */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		0020902E2105E14300988403 /* Hashing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hashing.swift; sourceTree = "<group>"; };
 		002090312105E16E00988403 /* PaddableTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddableTree.swift; sourceTree = "<group>"; };
 		0020903321061D4600988403 /* Web3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web3Service.swift; sourceTree = "<group>"; };
+		00B17CD9211850A400EFC16C /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		1AC3D3C7418093F4D5911DCD /* libPods-KYCApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KYCApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		355CABDFFC1C5B8D317E4CCF /* Pods-KYCApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KYCApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KYCApp/Pods-KYCApp.debug.xcconfig"; sourceTree = "<group>"; };
 		FC9397007A7136850D00FC5E /* Pods-KYCApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KYCApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-KYCApp/Pods-KYCApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				002090192104819500988403 /* InformationCell.swift */,
+				00B17CD9211850A400EFC16C /* RoundedButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				0020902F2105E14300988403 /* Hashing.swift in Sources */,
 				0020901D210497FD00988403 /* UserDataModel.swift in Sources */,
 				0020901121047E3100988403 /* ImportFromTextViewController.swift in Sources */,
+				00B17CDA211850A400EFC16C /* RoundedButton.swift in Sources */,
 				0020901321047E4D00988403 /* ProfileViewController.swift in Sources */,
 				00208FE12104674D00988403 /* AppDelegate.swift in Sources */,
 				0020901621047EDA00988403 /* SendDataViewController.swift in Sources */,

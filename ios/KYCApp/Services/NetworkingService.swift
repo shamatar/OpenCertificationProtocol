@@ -11,7 +11,7 @@ import web3swift
 class NetworkInteractionService {
     //This is a method for getting data from the link and than delete that data in the server
     func retrieveData(model: QRCodeGetDataModel, completion: @escaping(Result<[UserDataModel]>) -> Void) {
-        guard let url = URL(string: model.address) else { return }
+        guard let url = URL(string: model.path) else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -89,7 +89,7 @@ class NetworkInteractionService {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let initialData = InitialData(publicKey: key.base64EncodedString(), sessionId: model.sessionId, mainURL: model.mainURL, signature: "sign")
+        let initialData = InitialData(publicKey: "0x" + key.toHexString(), sessionId: model.sessionId, mainURL: model.mainURL, signature: "sign")
         do {
             request.httpBody = try JSONEncoder().encode(initialData)
         } catch{

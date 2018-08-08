@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -20,24 +21,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lallaal al lal lalallalalall lalalallalalla la lot of text here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lml-9b-RtQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prove your identity securely without any effort!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lml-9b-RtQ">
                                 <rect key="frame" x="40" y="378.5" width="295" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ac2-oC-qlu">
-                                <rect key="frame" x="60" y="517" width="255" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ac2-oC-qlu" customClass="RoundedButton" customModule="KYCApp" customModuleProvider="target">
+                                <rect key="frame" x="60" y="531" width="255" height="40"/>
+                                <color key="backgroundColor" red="0.80392156862745101" green="0.17254901960784313" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="bd7-Vf-3WS"/>
+                                    <constraint firstAttribute="height" constant="40" id="bd7-Vf-3WS"/>
                                 </constraints>
-                                <state key="normal" title="IMPORT CERTIFICATE"/>
+                                <state key="normal" title="IMPORT CERTIFICATE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="importCertificateButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pPl-M2-B6a"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WeW-2e-NEQ">
-                                <rect key="frame" x="128" y="328.5" width="119" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KYC Demo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WeW-2e-NEQ">
+                                <rect key="frame" x="126" y="328.5" width="123" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,17 +54,24 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RQW-cB-CMP">
                                 <rect key="frame" x="112" y="158.5" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="IBp-eX-HYS"/>
-                                    <constraint firstAttribute="width" constant="150" id="jxl-eN-Ovo"/>
+                                    <constraint firstAttribute="width" secondItem="RQW-cB-CMP" secondAttribute="height" multiplier="1:1" id="9IY-8i-tcN"/>
                                 </constraints>
                             </imageView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tUh-Dl-ZIJ">
-                                <rect key="frame" x="169" y="472" width="37" height="37"/>
+                                <rect key="frame" x="169" y="486" width="37" height="37"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYW-NH-die">
-                                <rect key="frame" x="60" y="575" width="255" height="32"/>
-                                <state key="normal" title="SEND PUBLIC KEY"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYW-NH-die" customClass="RoundedButton" customModule="KYCApp" customModuleProvider="target">
+                                <rect key="frame" x="60" y="587" width="255" height="40"/>
+                                <color key="backgroundColor" red="0.80392156859999997" green="0.17254901959999999" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="SEND PUBLIC KEY">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="sendPublicKeyButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Jc-NC-6NA"/>
                                 </connections>
@@ -64,22 +80,22 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Lml-9b-RtQ" secondAttribute="trailing" constant="40" id="1Tc-3p-Ywb"/>
+                            <constraint firstItem="RQW-cB-CMP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" priority="750" constant="138.5" id="3zc-F7-Qez"/>
+                            <constraint firstItem="IYW-NH-die" firstAttribute="leading" secondItem="ac2-oC-qlu" secondAttribute="leading" id="8Db-Qe-p4n"/>
+                            <constraint firstItem="IYW-NH-die" firstAttribute="trailing" secondItem="ac2-oC-qlu" secondAttribute="trailing" id="D1N-uF-9Qw"/>
                             <constraint firstItem="tUh-Dl-ZIJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="G0F-0h-zOT"/>
                             <constraint firstItem="RQW-cB-CMP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="Gxe-yg-fM1"/>
-                            <constraint firstItem="IYW-NH-die" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="MPs-uz-Js7"/>
                             <constraint firstItem="Lml-9b-RtQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="MpV-bg-qe1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ac2-oC-qlu" secondAttribute="trailing" constant="60" id="NeV-v2-TNv"/>
+                            <constraint firstItem="IYW-NH-die" firstAttribute="height" secondItem="ac2-oC-qlu" secondAttribute="height" id="Nll-ff-3Za"/>
                             <constraint firstItem="RQW-cB-CMP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S8F-3L-uze"/>
                             <constraint firstItem="Lml-9b-RtQ" firstAttribute="top" secondItem="WeW-2e-NEQ" secondAttribute="bottom" constant="20" id="Xez-ka-N2D"/>
-                            <constraint firstItem="IYW-NH-die" firstAttribute="top" secondItem="ac2-oC-qlu" secondAttribute="bottom" constant="8" id="Xp7-tp-3Zn"/>
-                            <constraint firstItem="Lml-9b-RtQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Y72-Dp-crI"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IYW-NH-die" secondAttribute="trailing" constant="60" id="k95-fh-Hvv"/>
+                            <constraint firstItem="IYW-NH-die" firstAttribute="top" secondItem="ac2-oC-qlu" secondAttribute="bottom" constant="16" id="Xp7-tp-3Zn"/>
                             <constraint firstItem="ac2-oC-qlu" firstAttribute="top" secondItem="tUh-Dl-ZIJ" secondAttribute="bottom" constant="8" id="kIZ-cx-HKC"/>
                             <constraint firstItem="ac2-oC-qlu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Lml-9b-RtQ" secondAttribute="bottom" constant="20" id="kgv-rZ-cP8"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ac2-oC-qlu" secondAttribute="bottom" constant="100" id="mPt-p2-kml"/>
                             <constraint firstItem="WeW-2e-NEQ" firstAttribute="top" secondItem="RQW-cB-CMP" secondAttribute="bottom" constant="20" id="ne9-zD-rqN"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IYW-NH-die" secondAttribute="bottom" constant="60" id="sKg-7k-qtl"/>
                             <constraint firstItem="ac2-oC-qlu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="xPo-QO-Qlo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IYW-NH-die" secondAttribute="bottom" constant="40" id="xbY-ZR-fKO"/>
                             <constraint firstItem="WeW-2e-NEQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="z5o-0N-uXC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -88,6 +104,7 @@
                     <connections>
                         <outlet property="descriptionLabel" destination="Lml-9b-RtQ" id="k9U-WT-mwi"/>
                         <outlet property="importCertificateButton" destination="ac2-oC-qlu" id="Ege-Cv-ke1"/>
+                        <outlet property="sendPublicKeyButton" destination="IYW-NH-die" id="8Ed-mQ-VOA"/>
                         <outlet property="spinner" destination="tUh-Dl-ZIJ" id="gBW-eW-Q4a"/>
                         <segue destination="ZEi-cA-Gri" kind="show" identifier="showProfile" id="911-uF-hPP"/>
                     </connections>
@@ -158,19 +175,35 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Xka-hr-Igx">
                                 <rect key="frame" x="40" y="607" width="295" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zf-nM-cuE">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zf-nM-cuE" customClass="RoundedButton" customModule="KYCApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="132.5" height="30"/>
-                                        <state key="normal" title="QR"/>
+                                        <color key="backgroundColor" red="0.80392156859999997" green="0.17254901959999999" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="QR">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="qrScanTapped:" destination="ZEi-cA-Gri" eventType="touchUpInside" id="UOf-J7-5tt"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYG-Rb-n5I">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYG-Rb-n5I" customClass="RoundedButton" customModule="KYCApp" customModuleProvider="target">
                                         <rect key="frame" x="162.5" y="0.0" width="132.5" height="30"/>
+                                        <color key="backgroundColor" red="0.80392156859999997" green="0.17254901959999999" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="XVh-Rd-F1g"/>
                                         </constraints>
-                                        <state key="normal" title="Settings"/>
+                                        <state key="normal" title="Settings">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="UTa-5v-nCS" kind="show" id="MLB-wG-9p5"/>
                                         </connections>
@@ -209,9 +242,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muH-jW-cb2">
-                                <rect key="frame" x="141" y="318" width="93" height="30"/>
-                                <state key="normal" title="Delete Profile"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muH-jW-cb2" customClass="RoundedButton" customModule="KYCApp" customModuleProvider="target">
+                                <rect key="frame" x="122.5" y="313" width="130" height="40"/>
+                                <color key="backgroundColor" red="0.80392156859999997" green="0.17254901959999999" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="bCG-IQ-Dne"/>
+                                    <constraint firstAttribute="width" constant="130" id="z1R-MT-f30"/>
+                                </constraints>
+                                <state key="normal" title="Delete Profile">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="deleteProfileButtonTapped:" destination="UTa-5v-nCS" eventType="touchUpInside" id="NVx-Do-u5M"/>
                                 </connections>
@@ -255,7 +300,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CRc-Sb-Gos">
-                                <rect key="frame" x="30" y="133.5" width="315" height="423.5"/>
+                                <rect key="frame" x="30" y="132.5" width="315" height="424.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="informationCell" rowHeight="50" id="XJ8-KS-UCs" customClass="InformationCell2" customModule="KYCApp" customModuleProvider="target">
@@ -299,20 +344,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This gues" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJp-DT-ScV">
-                                <rect key="frame" x="150.5" y="36" width="74.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This site" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJp-DT-ScV">
+                                <rect key="frame" x="155.5" y="36" width="64.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="http://somesite.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veq-GX-Y38">
-                                <rect key="frame" x="110.5" y="64.5" width="153.5" height="20.5"/>
+                                <rect key="frame" x="110.5" y="64" width="153.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.13725490200000001" green="0.50980392159999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Whant next data from you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zis-IJ-hFd">
-                                <rect key="frame" x="88" y="93" width="198" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want the following information about you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Zis-IJ-hFd">
+                                <rect key="frame" x="30" y="92.5" width="315.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -320,16 +365,32 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="6c1-l1-mJN">
                                 <rect key="frame" x="40" y="607" width="295" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7c-Db-lzC">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7c-Db-lzC" customClass="RoundedButton" customModule="KYCApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="127.5" height="30"/>
-                                        <state key="normal" title="Share"/>
+                                        <color key="backgroundColor" red="0.80392156859999997" green="0.17254901959999999" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Share">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="shareButtonTapped:" destination="Q5A-gv-FDJ" eventType="touchUpInside" id="hwn-e8-249"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7r-u0-uxr">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7r-u0-uxr" customClass="RoundedButton" customModule="KYCApp" customModuleProvider="target">
                                         <rect key="frame" x="167.5" y="0.0" width="127.5" height="30"/>
-                                        <state key="normal" title="Reject"/>
+                                        <color key="backgroundColor" red="0.80392156859999997" green="0.17254901959999999" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Reject">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="rejectButtonTapped:" destination="Q5A-gv-FDJ" eventType="touchUpInside" id="VRa-Ay-joR"/>
                                         </connections>
@@ -345,6 +406,7 @@
                         <constraints>
                             <constraint firstItem="CRc-Sb-Gos" firstAttribute="top" secondItem="Zis-IJ-hFd" secondAttribute="bottom" constant="20" id="3UE-oF-RnF"/>
                             <constraint firstItem="h4v-1m-ZZ9" firstAttribute="centerX" secondItem="xpR-TA-9bn" secondAttribute="centerX" id="5Uc-wx-HRG"/>
+                            <constraint firstItem="Zis-IJ-hFd" firstAttribute="trailing" secondItem="CRc-Sb-Gos" secondAttribute="trailing" id="AoT-QY-8VX"/>
                             <constraint firstItem="PoM-Lk-EJ1" firstAttribute="trailing" secondItem="CRc-Sb-Gos" secondAttribute="trailing" constant="30" id="B6B-C7-z1V"/>
                             <constraint firstItem="6c1-l1-mJN" firstAttribute="top" secondItem="CRc-Sb-Gos" secondAttribute="bottom" constant="50" id="CgX-1m-NiO"/>
                             <constraint firstItem="gJp-DT-ScV" firstAttribute="top" secondItem="PoM-Lk-EJ1" secondAttribute="top" constant="16" id="JxJ-2t-BjV"/>
@@ -355,6 +417,7 @@
                             <constraint firstItem="gJp-DT-ScV" firstAttribute="centerX" secondItem="xpR-TA-9bn" secondAttribute="centerX" id="esn-2D-a1I"/>
                             <constraint firstItem="Zis-IJ-hFd" firstAttribute="centerX" secondItem="xpR-TA-9bn" secondAttribute="centerX" id="sfH-gX-Tkq"/>
                             <constraint firstItem="PoM-Lk-EJ1" firstAttribute="bottom" secondItem="6c1-l1-mJN" secondAttribute="bottom" constant="30" id="vHp-2p-QYQ"/>
+                            <constraint firstItem="Zis-IJ-hFd" firstAttribute="leading" secondItem="CRc-Sb-Gos" secondAttribute="leading" id="w2L-SF-V12"/>
                             <constraint firstItem="PoM-Lk-EJ1" firstAttribute="trailing" secondItem="6c1-l1-mJN" secondAttribute="trailing" constant="40" id="wYT-xc-Kpb"/>
                             <constraint firstItem="Zis-IJ-hFd" firstAttribute="top" secondItem="veq-GX-Y38" secondAttribute="bottom" constant="8" id="wge-cQ-0ke"/>
                             <constraint firstItem="CRc-Sb-Gos" firstAttribute="leading" secondItem="PoM-Lk-EJ1" secondAttribute="leading" constant="30" id="yeW-dd-05n"/>

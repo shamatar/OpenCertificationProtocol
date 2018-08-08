@@ -17,5 +17,5 @@ struct QRCodeSendKeyModel: Codable {
 
 struct QRCodeGetDataModel: Codable {
     let sessionId: String
-    let address: String
+    let path: String
 }
