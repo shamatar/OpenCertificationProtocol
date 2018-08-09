@@ -12,8 +12,8 @@ class InformationCell: UITableViewCell {
     
     
     func configureCell(withData data: UserDataModel) {
-        nameLabel.text = data.typeID
-        detailLabel.text = data.detail
+        nameLabel.text = data.name
+        detailLabel.text = data.value
     }
 }
 
@@ -24,7 +24,7 @@ class InformationCell2: UITableViewCell {
     
     
     func configureCell(withData data: UserDataModel) {
-        nameLabel.text = data.typeID
-        detailLabel.text = data.detail
+        nameLabel.text = data.name
+        detailLabel.text = data.value
     }
 }

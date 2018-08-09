@@ -12,19 +12,6 @@ class ParserService {
         return nil
     }
     
-    func parseQRCodeData(data: String) -> QRCodeDataModel? {
-        print(data)
-        guard let data = data.data(using: .utf8) else { return nil }
-        do {
-            let normalData = try JSONDecoder().decode(QRCodeDataModel.self, from: data)
-            return normalData
-            
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-    
     
     func parseQRCode<T: Codable>(data: String) -> T? {
         guard let data = data.data(using: .utf8) else { return nil }

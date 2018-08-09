@@ -4,6 +4,7 @@
 //
 import Foundation
 
+//TODO: - This is a wrong model, write a right one.
 struct QRCodeDataModel: Codable {
     let url: String
     let typeIDs: [String]

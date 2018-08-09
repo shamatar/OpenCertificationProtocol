@@ -52,7 +52,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RQW-cB-CMP">
-                                <rect key="frame" x="112" y="158.5" width="150" height="150"/>
+                                <rect key="frame" x="112.5" y="158.5" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RQW-cB-CMP" secondAttribute="height" multiplier="1:1" id="9IY-8i-tcN"/>
                                 </constraints>
@@ -243,7 +243,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muH-jW-cb2" customClass="RoundedButton" customModule="KYCApp" customModuleProvider="target">
-                                <rect key="frame" x="122.5" y="313" width="130" height="40"/>
+                                <rect key="frame" x="122.5" y="313.5" width="130" height="40"/>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.17254901959999999" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bCG-IQ-Dne"/>
@@ -351,7 +351,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="http://somesite.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veq-GX-Y38">
-                                <rect key="frame" x="110.5" y="64" width="153.5" height="20.5"/>
+                                <rect key="frame" x="111" y="64" width="153.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.13725490200000001" green="0.50980392159999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>

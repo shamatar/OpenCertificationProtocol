@@ -16,10 +16,10 @@ class NetworkInteractionService {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let initialData = GetDataPOSTBody(sessionId: model.sessionId, signature: "sign")
+        let initialData = GetDataPOSTBody(sessionId: model.sessionId, signature: "qwe")
         do {
             request.httpBody = try JSONEncoder().encode(initialData)
-        } catch{
+        } catch {
             completion(Result.error(error))
         }
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -30,12 +30,16 @@ class NetworkInteractionService {
                 return
             }
             do {
-                if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:String] {
+                if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
                     var res = [UserDataModel]()
                     
                     for (key, value) in json {
+                        guard let userData = value as? [String: String] else { return }
+                        guard let value = userData["value"],
+                            let name = userData["name"],
+                            let type = userData["type"] else { return }
                         res.append(
-                            UserDataModel(typeID: key, detail: value)
+                            UserDataModel(typeID: key, value: value, name: name, type: type)
                         )
                     }
                     DispatchQueue.main.async {
@@ -60,17 +64,17 @@ class NetworkInteractionService {
         
     }
     //Method for sending proofs + data + signature, requested by the bank
-    func sendData(toUrl urlString: String,data: [UserDataModel], fullData: [UserDataModel], randomNumber: Int,completion: @escaping(Bool) -> Void) {
-        let tree = PaddabbleTree(fullData, UserDataModel(typeID: "", detail: ""))
+    func sendData(toUrl urlString: String, data: [UserDataModel], fullData: [UserDataModel], randomNumber: Int,completion: @escaping(Bool) -> Void) {
+        let tree = PaddabbleTree(fullData, UserDataModel(typeID: "", value: "", name: "", type: ""))
         var proofs = [Data]()
         for el in data {
             guard let index = fullData.index(where: { (model) -> Bool in
-                return model.typeID == el.typeID && model.detail == el.detail
+                return model.typeID == el.typeID && model.name == el.name && model.type == el.type && model.value == el.value
             }) else { return }
             guard let proof = tree.makeBinaryProof(index) else { return }
             proofs.append(proof)
         }
-        
+
         //You have a structure of the data to send written on some A4 paper on your table
         guard let data = UserDefaults.standard.data(forKey: "keyData") else { return }
         guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return }
@@ -89,7 +93,9 @@ class NetworkInteractionService {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let initialData = InitialData(publicKey: "0x" + key.toHexString(), sessionId: model.sessionId, mainURL: model.mainURL, signature: "sign")
+        //TODO: - Send Address of the wallet
+        guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return }
+        let initialData = InitialData(publicKey: address, sessionId: model.sessionId, mainURL: model.mainURL, signature: "qwe")
         do {
             request.httpBody = try JSONEncoder().encode(initialData)
         } catch{

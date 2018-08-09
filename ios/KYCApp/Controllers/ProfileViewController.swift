@@ -47,7 +47,7 @@ class ProfileViewController: UIViewController, QRCodeReaderViewControllerDelegat
     //MARK: - QR Delegate
     func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
         reader.stopScanning()
-        guard let parsedData = parser.parseQRCodeData(data: result.value) else {
+        guard let parsedData: QRCodeDataModel = parser.parseQRCode(data: result.value) else {
             return
         }
         

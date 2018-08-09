@@ -12,7 +12,6 @@
 		00208FE62104674D00988403 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00208FE42104674D00988403 /* Main.storyboard */; };
 		00208FE82104674E00988403 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00208FE72104674E00988403 /* Assets.xcassets */; };
 		00208FEB2104674E00988403 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00208FE92104674E00988403 /* LaunchScreen.storyboard */; };
-		0020901121047E3100988403 /* ImportFromTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020901021047E3100988403 /* ImportFromTextViewController.swift */; };
 		0020901321047E4D00988403 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020901221047E4D00988403 /* ProfileViewController.swift */; };
 		0020901621047EDA00988403 /* SendDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020901521047EDA00988403 /* SendDataViewController.swift */; };
 		0020901A2104819500988403 /* InformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002090192104819500988403 /* InformationCell.swift */; };
@@ -38,7 +37,6 @@
 		00208FE72104674E00988403 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00208FEA2104674E00988403 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00208FEC2104674E00988403 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0020901021047E3100988403 /* ImportFromTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportFromTextViewController.swift; sourceTree = "<group>"; };
 		0020901221047E4D00988403 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0020901521047EDA00988403 /* SendDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataViewController.swift; sourceTree = "<group>"; };
 		002090192104819500988403 /* InformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCell.swift; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				00208FE22104674D00988403 /* ImportViewController.swift */,
-				0020901021047E3100988403 /* ImportFromTextViewController.swift */,
 				0020901221047E4D00988403 /* ProfileViewController.swift */,
 				0020901521047EDA00988403 /* SendDataViewController.swift */,
 				002090232104A6D200988403 /* SettingsViewController.swift */,
@@ -292,7 +289,6 @@
 				002090322105E16E00988403 /* PaddableTree.swift in Sources */,
 				0020902F2105E14300988403 /* Hashing.swift in Sources */,
 				0020901D210497FD00988403 /* UserDataModel.swift in Sources */,
-				0020901121047E3100988403 /* ImportFromTextViewController.swift in Sources */,
 				00B17CDA211850A400EFC16C /* RoundedButton.swift in Sources */,
 				0020901321047E4D00988403 /* ProfileViewController.swift in Sources */,
 				00208FE12104674D00988403 /* AppDelegate.swift in Sources */,

@@ -32,7 +32,7 @@ class LocalStorageService {
             for el in fetchedData {
                 if types.contains(el.typeID!) {
                     result.append(
-                        UserDataModel(typeID: el.typeID!, detail: el.detail!)
+                        UserDataModel(typeID: el.typeID!, value: el.value!, name: el.name!, type: el.type!)
                     )
                 }
             }
@@ -52,7 +52,7 @@ class LocalStorageService {
             let fetchedData = try mainContext.fetch(request)
             for el in fetchedData {
                 result.append(
-                    UserDataModel(typeID: el.typeID!, detail: el.detail!)
+                    UserDataModel(typeID: el.typeID!, value: el.value!, name: el.name!, type: el.type!)
                 )
             }
             return result
@@ -81,7 +81,9 @@ class LocalStorageService {
                 for (index, userData) in data.enumerated() {
                     let newEntity = NSEntityDescription.insertNewObject(forEntityName: "UserData", into: context) as? UserData
                     newEntity?.typeID = userData.typeID
-                    newEntity?.detail = userData.detail
+                    newEntity?.name = userData.name
+                    newEntity?.value = userData.value
+                    newEntity?.type = userData.type
                     newEntity?.index = Int16(index)
                 }
                 try context.save()

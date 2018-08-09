@@ -8,7 +8,7 @@ import Foundation
 
 struct UserDataModel: ContentProtocol {
     var data: Data {
-        guard let d = (typeID + ", " + detail).data(using: .utf8) else { return Data() }
+        guard let d = (name + ", " + value).data(using: .utf8) else { return Data() }
         return d
     }
     
@@ -21,5 +21,7 @@ struct UserDataModel: ContentProtocol {
     }
     
     let typeID: String
-    let detail: String
+    let value: String
+    let name: String
+    let type: String
 }

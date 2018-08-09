@@ -39,7 +39,7 @@ class SendDataViewController: UIViewController {
                 self.spinner.isHidden = true
                 self.showAlert()
             } else {
-                
+
             }
         }
         
