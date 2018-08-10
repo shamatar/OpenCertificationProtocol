@@ -112,3 +112,12 @@ extension UIViewController {
     }
 }
 
+extension String {
+    func hexToUInt<T>() -> T? where T: FixedWidthInteger {
+        var value = self
+        if value.hasPrefix("0x") {
+            value.removeFirst(2)
+        }
+        return T(value, radix: 16)
+    }
+}

@@ -19,6 +19,8 @@ class SendDataViewController: UIViewController {
     
     var data = [UserDataModel]()
     var siteUrlString: String?
+    var model: QRCodeDataModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         spinner.isHidden = true
@@ -29,11 +31,11 @@ class SendDataViewController: UIViewController {
     }
 
     @IBAction func shareButtonTapped(_ sender: Any) {
-        guard let urlString = siteUrlString else { return }
         spinner.isHidden = false
         spinner.startAnimating()
         let allData = localStorage.getAllData()
-        networkService.sendData(toUrl: urlString, data: data, fullData: allData, randomNumber: 1) { (success) in
+        guard let model = model else { return }
+        networkService.sendData(withQRCodeModel: model, data: data, fullData: allData, randomNumber: 1) { (success) in
             if success {
                 self.spinner.stopAnimating()
                 self.spinner.isHidden = true

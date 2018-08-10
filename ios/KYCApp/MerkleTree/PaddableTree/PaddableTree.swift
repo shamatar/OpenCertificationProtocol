@@ -193,3 +193,18 @@ public struct PaddabbleTree {
         return hash == expectedRoot
     }
 }
+
+public struct SimpleContent: ContentProtocol {
+    public func getHash(_ hasher: TreeHasher) -> Data {
+        return hasher.hash(self.data)
+    }
+    
+    public func isEqualTo(_ other: ContentProtocol) -> Bool {
+        return self.data == other.data
+    }
+    
+    public var data: Data
+    public init(_ data: Data) {
+        self.data = data
+    }
+}

@@ -4,12 +4,20 @@
 //
 
 import Foundation
+import web3swift
 
 
 struct UserDataModel: ContentProtocol {
+    static var emptyData: Data {
+        return RLP.encode([Data(repeating: 0, count: 2) as AnyObject, [Data(repeating: 0, count: 32)] as AnyObject])!
+    }
+    
     var data: Data {
-        guard let d = (name + ", " + value).data(using: .utf8) else { return Data() }
-        return d
+        let beUint = self.typeID
+        let bytes : Array<UInt8> = [(UInt8((beUint >> 8) & 0xff)), UInt8(beUint & 0xff)]
+        let type = Data(bytes)
+        guard let data = value.data(using: .utf8) else { return Data() }
+        return RLP.encode([type as AnyObject, [data] as AnyObject])!
     }
     
     func getHash(_ hasher: TreeHasher) -> Data {
@@ -20,8 +28,10 @@ struct UserDataModel: ContentProtocol {
         return self.data == other.data
     }
     
-    let typeID: String
+    let typeID: UInt16
     let value: String
     let name: String
     let type: String
 }
+
+

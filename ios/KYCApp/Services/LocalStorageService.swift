@@ -23,6 +23,9 @@ class LocalStorageService {
     }
     
     func getDataForTypes(types: [String]) -> [UserDataModel] {
+        let uintTypes = types.compactMap { (el) -> UInt16? in
+            return el.hexToUInt()
+        }
         let request: NSFetchRequest<UserData> = UserData.fetchRequest()
         var result = [UserDataModel]()
         let sort = NSSortDescriptor(key: #keyPath(UserData.index), ascending: true)
@@ -30,9 +33,11 @@ class LocalStorageService {
         do {
             let fetchedData = try mainContext.fetch(request)
             for el in fetchedData {
-                if types.contains(el.typeID!) {
+                let tID: UInt16 = el.typeID!.hexToUInt()!
+                if uintTypes.contains(tID) {
+                    
                     result.append(
-                        UserDataModel(typeID: el.typeID!, value: el.value!, name: el.name!, type: el.type!)
+                        UserDataModel(typeID: tID, value: el.value!, name: el.name!, type: el.type!)
                     )
                 }
             }
@@ -51,8 +56,9 @@ class LocalStorageService {
         do {
             let fetchedData = try mainContext.fetch(request)
             for el in fetchedData {
+                let tID: UInt16 = el.typeID!.hexToUInt()!
                 result.append(
-                    UserDataModel(typeID: el.typeID!, value: el.value!, name: el.name!, type: el.type!)
+                    UserDataModel(typeID: tID, value: el.value!, name: el.name!, type: el.type!)
                 )
             }
             return result
@@ -80,7 +86,7 @@ class LocalStorageService {
                 //Add new data
                 for (index, userData) in data.enumerated() {
                     let newEntity = NSEntityDescription.insertNewObject(forEntityName: "UserData", into: context) as? UserData
-                    newEntity?.typeID = userData.typeID
+                    newEntity?.typeID = "0x" + String(userData.typeID, radix: 16)
                     newEntity?.name = userData.name
                     newEntity?.value = userData.value
                     newEntity?.type = userData.type

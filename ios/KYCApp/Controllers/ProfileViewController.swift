@@ -66,8 +66,9 @@ class ProfileViewController: UIViewController, QRCodeReaderViewControllerDelegat
         
         if let vc = segue.destination as? SendDataViewController {
             guard let parsedData = sender as? QRCodeDataModel else { return }
-            vc.data = localStorage.getDataForTypes(types: parsedData.typeIDs)
-            vc.siteUrlString = parsedData.url
+            vc.data = localStorage.getDataForTypes(types: parsedData.fields)
+            vc.siteUrlString = parsedData.address
+            vc.model = parsedData
         }
     }
 

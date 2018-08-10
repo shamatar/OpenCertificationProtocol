@@ -38,8 +38,9 @@ class NetworkInteractionService {
                         guard let value = userData["value"],
                             let name = userData["name"],
                             let type = userData["type"] else { return }
+                        let uintType: UInt16 = key.hexToUInt()!
                         res.append(
-                            UserDataModel(typeID: key, value: value, name: name, type: type)
+                            UserDataModel(typeID: uintType, value: value, name: name, type: type)
                         )
                     }
                     DispatchQueue.main.async {
@@ -64,27 +65,61 @@ class NetworkInteractionService {
         
     }
     //Method for sending proofs + data + signature, requested by the bank
-    func sendData(toUrl urlString: String, data: [UserDataModel], fullData: [UserDataModel], randomNumber: Int,completion: @escaping(Bool) -> Void) {
-        let tree = PaddabbleTree(fullData, UserDataModel(typeID: "", value: "", name: "", type: ""))
+    func sendData(withQRCodeModel model: QRCodeDataModel, data: [UserDataModel], fullData: [UserDataModel], randomNumber: Int,completion: @escaping(Bool) -> Void) {
+        let tree = PaddabbleTree(fullData, SimpleContent(UserDataModel.emptyData))
+        guard let rootHash = tree.merkleRoot?.toHexString() else { return }
         var proofs = [Data]()
         for el in data {
             guard let index = fullData.index(where: { (model) -> Bool in
                 return model.typeID == el.typeID && model.name == el.name && model.type == el.type && model.value == el.value
             }) else { return }
             guard let proof = tree.makeBinaryProof(index) else { return }
+            print(proof.toHexString())
             proofs.append(proof)
         }
 
         //You have a structure of the data to send written on some A4 paper on your table
-        guard let data = UserDefaults.standard.data(forKey: "keyData") else { return }
-        guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return }
-        guard let keystore = EthereumKeystoreV3(data) else { return }
-        guard let privateKey = try? keystore.UNSAFE_getPrivateKeyData(password: "BANKEXFOUNDATION", account: EthereumAddress(address)!) else { return }
-        let signature = SECP256K1.signForRecovery(hash: (fullData.first?.data)!, privateKey: privateKey)
-        // Here should be sending of data, proofs and signature to somebody (Data, Proofs)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-            completion(true)
-        })
+//        guard let data = UserDefaults.standard.data(forKey: "keyData") else { return }
+//        guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return }
+//        guard let keystore = EthereumKeystoreV3(data) else { return }
+//        guard let privateKey = try? keystore.UNSAFE_getPrivateKeyData(password: "BANKEXFOUNDATION", account: EthereumAddress(address)!) else { return }
+//        let signature = SECP256K1.signForRecovery(hash: (fullData.first?.data)!, privateKey: privateKey)
+        var dataForPost = [String: DataWithProof]()
+        for (position, key) in model.fields.enumerated() {
+            let user = data.first { (user) -> Bool in
+                let uint: UInt16 = key.hexToUInt()!
+                return user.typeID == uint
+            }
+            guard let value = user?.value else { return }
+            print(proofs[position].toHexString())
+            dataForPost[key] = DataWithProof(value: value, proof: proofs[position].toHexString())
+        }
+        
+        let post = DataToBankPOSTBody(id: model.id, key: model.key, rootHash: rootHash, data: dataForPost)
+        let url = URL(string: model.address)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        do {
+            request.httpBody = try JSONEncoder().encode(post)
+        } catch {
+            print(error)
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error)
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+                return
+            } else {
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            }
+        }
+        task.resume()
+        
     }
     
     //DONE.
@@ -147,5 +182,17 @@ struct InitialData: Codable {
 struct GetDataPOSTBody: Codable {
     let sessionId: String
     let signature: String
+}
+
+struct DataToBankPOSTBody: Codable {
+    let id: Int
+    let key: Int
+    let rootHash: String
+    let data: [String: DataWithProof]
+}
+
+struct DataWithProof: Codable {
+    let value: String
+    let proof: String
 }
 

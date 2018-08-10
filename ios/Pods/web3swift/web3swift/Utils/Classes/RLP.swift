@@ -12,7 +12,7 @@ import BigInt
 protocol ArrayType {}
 extension Array : ArrayType {}
 
-struct RLP {
+public struct RLP {
     static var length56 = BigUInt(UInt(56))
     static var lengthMax = (BigUInt(UInt(1)) << 256)
     
@@ -120,11 +120,16 @@ struct RLP {
         return encoded.bytes[0]
     }
     
-    static func encode(_ elements: Array<AnyObject>) -> Data? {
+    public static func encode(_ elements: Array<AnyObject>) -> Data? {
         var encodedData = Data()
-        for e in elements {
-            guard let encoded = encode(e) else {return nil}
-            encodedData.append(encoded)
+        for el in elements {
+            if let encoded = encode(el) {
+                encodedData.append(encoded)
+            } else {
+                guard let asArray = el as? Array<AnyObject> else {return nil}
+                guard let enc = encode(asArray) else {return nil}
+                encodedData.append(enc)
+            }
         }
         guard var encodedLength = encodeLength(encodedData.count, offset: UInt8(0xc0)) else {return nil}
         if (encodedLength != Data()) {
