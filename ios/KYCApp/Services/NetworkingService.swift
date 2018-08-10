@@ -7,12 +7,12 @@ import Foundation
 import web3swift
 
 
-//TODO: - ....
 class NetworkInteractionService {
-    //This is a method for getting data from the link and than delete that data in the server
+    
+    //This is a method for getting data, which will be deleted from the server afterwards
     func retrieveData(model: QRCodeGetDataModel, completion: @escaping(Result<[UserDataModel]>) -> Void) {
-        guard let url = URL(string: model.path) else { return }
         
+        guard let url = URL(string: model.path) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -64,7 +64,8 @@ class NetworkInteractionService {
         dataTask.resume()
         
     }
-    //Method for sending proofs + data + signature, requested by the bank
+    
+    //Method for sending proofs + data + signature(not now, but probably in future), requested by the bank
     func sendData(withQRCodeModel model: QRCodeDataModel, data: [UserDataModel], fullData: [UserDataModel], randomNumber: Int,completion: @escaping(Bool) -> Void) {
         let tree = PaddabbleTree(fullData, SimpleContent(UserDataModel.emptyData))
         guard let rootHash = tree.merkleRoot?.toHexString() else { return }
@@ -77,13 +78,6 @@ class NetworkInteractionService {
             print(proof.toHexString())
             proofs.append(proof)
         }
-
-        //You have a structure of the data to send written on some A4 paper on your table
-//        guard let data = UserDefaults.standard.data(forKey: "keyData") else { return }
-//        guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return }
-//        guard let keystore = EthereumKeystoreV3(data) else { return }
-//        guard let privateKey = try? keystore.UNSAFE_getPrivateKeyData(password: "BANKEXFOUNDATION", account: EthereumAddress(address)!) else { return }
-//        let signature = SECP256K1.signForRecovery(hash: (fullData.first?.data)!, privateKey: privateKey)
         var dataForPost = [String: DataWithProof]()
         for (position, key) in model.fields.enumerated() {
             let user = data.first { (user) -> Bool in
@@ -98,6 +92,7 @@ class NetworkInteractionService {
         let post = DataToBankPOSTBody(id: model.id, key: model.key, rootHash: rootHash, data: dataForPost)
         let url = URL(string: model.address)!
         var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         do {
             request.httpBody = try JSONEncoder().encode(post)
@@ -128,7 +123,6 @@ class NetworkInteractionService {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        //TODO: - Send Address of the wallet
         guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return }
         let initialData = InitialData(publicKey: address, sessionId: model.sessionId, mainURL: model.mainURL, signature: "qwe")
         do {
@@ -172,6 +166,7 @@ enum NetworkErrors: Error {
     case wrongFromatOfData
 }
 
+//MARK: - Codable structs for use in httpBodies
 struct InitialData: Codable {
     var publicKey: String
     let sessionId: String
