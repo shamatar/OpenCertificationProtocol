@@ -84,13 +84,14 @@ class LocalStorageService {
                 }
                 
                 //Add new data
-                for (index, userData) in data.enumerated() {
+                for userData in data {
                     let newEntity = NSEntityDescription.insertNewObject(forEntityName: "UserData", into: context) as? UserData
+                    let typeId = "0x" + String(userData.typeID, radix: 16)
                     newEntity?.typeID = "0x" + String(userData.typeID, radix: 16)
                     newEntity?.name = userData.name
                     newEntity?.value = userData.value
                     newEntity?.type = userData.type
-                    newEntity?.index = Int16(index)
+                    newEntity?.index = typeId.hexToUInt()!
                 }
                 try context.save()
                 DispatchQueue.main.async {
@@ -98,7 +99,9 @@ class LocalStorageService {
                 }
             } catch {
                 print(error)
-                completion(false)
+                DispatchQueue.main.async {
+                    completion(false)
+                }
             }
         }
     }
