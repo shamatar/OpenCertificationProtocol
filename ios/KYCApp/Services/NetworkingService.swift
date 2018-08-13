@@ -7,16 +7,17 @@ import Foundation
 import web3swift
 
 
+//TODO: - GLOBALLY: This is a very bad code, should be refactored, should be more generic.
+
 class NetworkInteractionService {
     
     //This is a method for getting data, which will be deleted from the server afterwards
     func retrieveData(model: QRCodeGetDataModel, completion: @escaping(Result<[UserDataModel]>) -> Void) {
-        
         guard let url = URL(string: model.path) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let initialData = GetDataPOSTBody(sessionId: model.sessionId, signature: "qwe")
+        let initialData = GetDataPOSTBody(sessionId: model.sessionId, signature: "qwe1")
         do {
             request.httpBody = try JSONEncoder().encode(initialData)
         } catch {
@@ -30,10 +31,20 @@ class NetworkInteractionService {
                 return
             }
             do {
-                if let data = data, let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
+                if let data = data, let hugeJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any], let jsonData = hugeJSON["data"] as? [String: Any], let checkSum = hugeJSON["checkSum"] as? String {
+                    let dataForCheckSum = try JSONSerialization.data(withJSONObject: jsonData, options: [])
+                    guard let stringify = String.init(data: dataForCheckSum, encoding: .utf8) else { return }
+                    let hash1 = stringify.md5()
+                    let hash = dataForCheckSum.md5().toHexString()
+                    guard hash == checkSum else {
+                        DispatchQueue.main.async {
+                            completion(Result.error(NetworkErrors.wrongCheckSum))
+                        }
+                        return
+                    }
                     var res = [UserDataModel]()
                     
-                    for (key, value) in json {
+                    for (key, value) in jsonData {
                         guard let userData = value as? [String: String] else { return }
                         guard let value = userData["value"],
                             let name = userData["name"],
@@ -65,8 +76,42 @@ class NetworkInteractionService {
         
     }
     
+    //Method, which tells the server that data could be deleted.
+    func dataRetrievedSuccessfully(urlString: String, sessionId: String, completion: @escaping (Bool) -> Void) {
+        guard let url = URL(string: urlString) else {
+            completion(false)
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let initialData = GetDataPOSTBody(sessionId: sessionId, signature: "qwe1")
+        do {
+            request.httpBody = try JSONEncoder().encode(initialData)
+        } catch {
+            completion(false)
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            //TODO: - check that responce is OK
+            print(response)
+            if error != nil {
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            }
+        }
+        task.resume()
+    }
+    
     //Method for sending proofs + data + signature(not now, but probably in future), requested by the bank
     func sendData(withQRCodeModel model: QRCodeDataModel, data: [UserDataModel], fullData: [UserDataModel], randomNumber: Int,completion: @escaping(Bool) -> Void) {
+        var fullData = data
+        fullData.insert(UserDataModel(typeID: 0, value: "qwe1", name: "", type: ""), at: 0)
         let tree = PaddabbleTree(fullData, SimpleContent(UserDataModel.emptyData))
         guard let rootHash = tree.merkleRoot?.toHexString() else { return }
         var proofs = [Data]()
@@ -124,7 +169,7 @@ class NetworkInteractionService {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return }
-        let initialData = InitialData(publicKey: address, sessionId: model.sessionId, mainURL: model.mainURL, signature: "qwe")
+        let initialData = InitialData(publicKey: address, sessionId: model.sessionId, mainURL: model.mainURL, signature: "qwe1")
         do {
             request.httpBody = try JSONEncoder().encode(initialData)
         } catch{
@@ -147,6 +192,8 @@ class NetworkInteractionService {
         dataTask.resume()
     }
     
+    
+    
     func signData(data: Data) -> Data? {
         guard let data = UserDefaults.standard.data(forKey: "keyData") else { return nil }
         guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return nil }
@@ -164,6 +211,7 @@ enum Result<T> {
 
 enum NetworkErrors: Error {
     case wrongFromatOfData
+    case wrongCheckSum
 }
 
 //MARK: - Codable structs for use in httpBodies

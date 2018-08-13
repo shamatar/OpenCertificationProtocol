@@ -9,7 +9,7 @@ import web3swift
 
 struct UserDataModel: ContentProtocol {
     static var emptyData: Data {
-        return RLP.encode([Data(repeating: 0, count: 2) as AnyObject, [Data(repeating: 0, count: 32)] as AnyObject])!
+        return RLP.encode([Data(repeating: 0, count: 2) as AnyObject, [Data(repeating: 0, count: 16)] as AnyObject])!
     }
     
     var data: Data {

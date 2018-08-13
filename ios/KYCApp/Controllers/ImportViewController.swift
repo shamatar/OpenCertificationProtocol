@@ -33,6 +33,7 @@ class ImportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         spinner.isHidden = true
+
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -72,6 +73,9 @@ class ImportViewController: UIViewController {
         descriptionLabel.isHidden = true
         spinner.isHidden = false
         spinner.startAnimating()
+        var base = model.path.split(separator: "/")
+        base.removeLast()
+        let baseUrlString = base.joined(separator: "/")
         networkService.retrieveData(model: model) { (result) in
             self.spinner.stopAnimating()
             self.spinner.isHidden = true
@@ -88,7 +92,14 @@ class ImportViewController: UIViewController {
                 } else {
                     self.localStorageService.save(data: data, completion: { (success) in
                         if success {
-                            self.performSegue(withIdentifier: "showProfile", sender: nil)
+                            self.networkService.dataRetrievedSuccessfully(urlString: baseUrlString + "/dataLoaded", sessionId: model.sessionId, completion: { (success) in
+                                if success {
+                                    self.performSegue(withIdentifier: "showProfile", sender: nil)
+                                } else {
+                                    print("Something went wrong!")
+                                }
+                            })
+                            
                         }
                     })
                 }
