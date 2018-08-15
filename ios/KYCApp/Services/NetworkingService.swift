@@ -17,7 +17,8 @@ class NetworkInteractionService {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let initialData = GetDataPOSTBody(sessionId: model.sessionId, signature: "qwe1")
+        guard let signature = signData(data: getDataToSign()) else { return }
+        let initialData = GetDataPOSTBody(sessionId: model.sessionId, signature: signature.toHexString())
         do {
             request.httpBody = try JSONEncoder().encode(initialData)
         } catch {
@@ -31,11 +32,8 @@ class NetworkInteractionService {
                 return
             }
             do {
-                if let data = data, let hugeJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any], let jsonData = hugeJSON["data"] as? [String: Any], let checkSum = hugeJSON["checkSum"] as? String {
-                    let dataForCheckSum = try JSONSerialization.data(withJSONObject: jsonData, options: [])
-                    guard let stringify = String.init(data: dataForCheckSum, encoding: .utf8) else { return }
-                    let hash1 = stringify.md5()
-                    let hash = dataForCheckSum.md5().toHexString()
+                if let data = data, let hugeJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any], let jsonDataString = hugeJSON["data"] as? String, let jsonData = try JSONSerialization.jsonObject(with: jsonDataString.data(using: .utf8)!, options: []) as? [String: Any], let checkSum = hugeJSON["checkSum"] as? String {
+                    let hash = jsonDataString.md5()
                     guard hash == checkSum else {
                         DispatchQueue.main.async {
                             completion(Result.error(NetworkErrors.wrongCheckSum))
@@ -85,7 +83,8 @@ class NetworkInteractionService {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let initialData = GetDataPOSTBody(sessionId: sessionId, signature: "qwe1")
+        guard let signature = signData(data: getDataToSign()) else { return }
+        let initialData = GetDataPOSTBody(sessionId: sessionId, signature: signature.toHexString())
         do {
             request.httpBody = try JSONEncoder().encode(initialData)
         } catch {
@@ -110,8 +109,9 @@ class NetworkInteractionService {
     
     //Method for sending proofs + data + signature(not now, but probably in future), requested by the bank
     func sendData(withQRCodeModel model: QRCodeDataModel, data: [UserDataModel], fullData: [UserDataModel], randomNumber: Int,completion: @escaping(Bool) -> Void) {
-        var fullData = data
-        fullData.insert(UserDataModel(typeID: 0, value: "qwe1", name: "", type: ""), at: 0)
+        var fullData = fullData
+        guard let signature = signData(data: getDataToSign()) else { return }
+        fullData.insert(UserDataModel(typeID: 0, value: signature.toHexString(), name: "", type: ""), at: 0)
         let tree = PaddabbleTree(fullData, SimpleContent(UserDataModel.emptyData))
         guard let rootHash = tree.merkleRoot?.toHexString() else { return }
         var proofs = [Data]()
@@ -169,7 +169,8 @@ class NetworkInteractionService {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return }
-        let initialData = InitialData(publicKey: address, sessionId: model.sessionId, mainURL: model.mainURL, signature: "qwe1")
+        guard let signature = signData(data: getDataToSign()) else { return }
+        let initialData = InitialData(publicKey: address, sessionId: model.sessionId, mainURL: model.mainURL, signature: signature.toHexString())
         do {
             request.httpBody = try JSONEncoder().encode(initialData)
         } catch{
@@ -201,6 +202,10 @@ class NetworkInteractionService {
         guard let privateKey = try? keystore.UNSAFE_getPrivateKeyData(password: "BANKEXFOUNDATION", account: EthereumAddress(address)!) else { return nil }
         let signature = SECP256K1.signForRecovery(hash: data.sha256(), privateKey: privateKey)
         return signature.serializedSignature
+    }
+    
+    private func getDataToSign() -> Data {
+        return "подпись".data(using: .utf8)!
     }
 }
 

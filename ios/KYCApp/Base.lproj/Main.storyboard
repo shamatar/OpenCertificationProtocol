@@ -300,14 +300,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CRc-Sb-Gos">
-                                <rect key="frame" x="30" y="132.5" width="315" height="424.5"/>
+                                <rect key="frame" x="16" y="132.5" width="329" height="424.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="informationCell" rowHeight="50" id="XJ8-KS-UCs" customClass="InformationCell2" customModule="KYCApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="315" height="50"/>
+                                        <rect key="frame" x="0.0" y="28" width="329" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XJ8-KS-UCs" id="siW-jD-ZUJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="315" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="329" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HuD-Qa-OUQ">
@@ -356,8 +356,8 @@
                                 <color key="textColor" red="0.13725490200000001" green="0.50980392159999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want the following information about you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Zis-IJ-hFd">
-                                <rect key="frame" x="30" y="92.5" width="315.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wants the following information about you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Zis-IJ-hFd">
+                                <rect key="frame" x="16" y="92.5" width="329.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -407,7 +407,7 @@
                             <constraint firstItem="CRc-Sb-Gos" firstAttribute="top" secondItem="Zis-IJ-hFd" secondAttribute="bottom" constant="20" id="3UE-oF-RnF"/>
                             <constraint firstItem="h4v-1m-ZZ9" firstAttribute="centerX" secondItem="xpR-TA-9bn" secondAttribute="centerX" id="5Uc-wx-HRG"/>
                             <constraint firstItem="Zis-IJ-hFd" firstAttribute="trailing" secondItem="CRc-Sb-Gos" secondAttribute="trailing" id="AoT-QY-8VX"/>
-                            <constraint firstItem="PoM-Lk-EJ1" firstAttribute="trailing" secondItem="CRc-Sb-Gos" secondAttribute="trailing" constant="30" id="B6B-C7-z1V"/>
+                            <constraint firstItem="PoM-Lk-EJ1" firstAttribute="trailing" secondItem="CRc-Sb-Gos" secondAttribute="trailing" constant="16" id="B6B-C7-z1V"/>
                             <constraint firstItem="6c1-l1-mJN" firstAttribute="top" secondItem="CRc-Sb-Gos" secondAttribute="bottom" constant="50" id="CgX-1m-NiO"/>
                             <constraint firstItem="gJp-DT-ScV" firstAttribute="top" secondItem="PoM-Lk-EJ1" secondAttribute="top" constant="16" id="JxJ-2t-BjV"/>
                             <constraint firstItem="h4v-1m-ZZ9" firstAttribute="top" secondItem="CRc-Sb-Gos" secondAttribute="bottom" constant="8" id="Prt-kf-vyq"/>
@@ -420,7 +420,7 @@
                             <constraint firstItem="Zis-IJ-hFd" firstAttribute="leading" secondItem="CRc-Sb-Gos" secondAttribute="leading" id="w2L-SF-V12"/>
                             <constraint firstItem="PoM-Lk-EJ1" firstAttribute="trailing" secondItem="6c1-l1-mJN" secondAttribute="trailing" constant="40" id="wYT-xc-Kpb"/>
                             <constraint firstItem="Zis-IJ-hFd" firstAttribute="top" secondItem="veq-GX-Y38" secondAttribute="bottom" constant="8" id="wge-cQ-0ke"/>
-                            <constraint firstItem="CRc-Sb-Gos" firstAttribute="leading" secondItem="PoM-Lk-EJ1" secondAttribute="leading" constant="30" id="yeW-dd-05n"/>
+                            <constraint firstItem="CRc-Sb-Gos" firstAttribute="leading" secondItem="PoM-Lk-EJ1" secondAttribute="leading" constant="16" id="yeW-dd-05n"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PoM-Lk-EJ1"/>
                     </view>
