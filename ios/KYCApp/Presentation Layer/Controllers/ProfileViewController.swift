@@ -31,7 +31,6 @@ class ProfileViewController: UIViewController, QRCodeReaderViewControllerDelegat
         info = localStorage.getAllData()
         tableView.dataSource = self
         tableView.delegate = self
-        //Web3Service().testIt()
     }
     
     
@@ -63,7 +62,6 @@ class ProfileViewController: UIViewController, QRCodeReaderViewControllerDelegat
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if let vc = segue.destination as? SendDataViewController {
             guard let parsedData = sender as? QRCodeDataModel else { return }
             vc.data = localStorage.getDataForTypes(types: parsedData.fields)

@@ -47,7 +47,22 @@ class ImportViewController: UIViewController {
 //        }
     }
     
-    func showAllert(data: [UserDataModel]) {
+    
+    
+    @IBAction func importCertificateButtonTapped(_ sender: Any) {
+        qrType = .importQR
+        readerVC.delegate = self
+        present(readerVC, animated: true, completion: nil)
+        
+    }
+    @IBAction func sendPublicKeyButtonTapped(_ sender: UIButton) {
+        qrType = .sendKey
+        readerVC.delegate = self
+        present(readerVC, animated: true, completion: nil)
+        
+    }
+    
+    private func showAllert(data: [UserDataModel]) {
         let alertController = UIAlertController(title: "Profile override", message: "After override you'll no longer be able to restore previous profile. Are you sure you want to override your profile data?", preferredStyle: .alert)
         let actionYes = UIAlertAction(title: "Yes", style: .default) { (_) in
             self.localStorageService.save(data: data, completion: { (success) in
@@ -68,20 +83,13 @@ class ImportViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func dataRetrieving(model: QRCodeGetDataModel) {
-        importCertificateButton.isHidden = true
-        descriptionLabel.isHidden = true
-        spinner.isHidden = false
-        spinner.startAnimating()
+    private func dataRetrieving(model: QRCodeGetDataModel) {
+        startSpinner()
         var base = model.path.split(separator: "/")
         base.removeLast()
         let baseUrlString = base.joined(separator: "/")
         networkService.retrieveData(model: model) { (result) in
-            self.spinner.stopAnimating()
-            self.spinner.isHidden = true
-            self.descriptionLabel.isHidden = false
-            self.importCertificateButton.isHidden = false
-            self.sendPublicKeyButton.isHidden = false
+            self.stopSpinner()
             self.urlString = nil
             switch result {
             case .error(let error):
@@ -108,17 +116,20 @@ class ImportViewController: UIViewController {
         }
     }
     
-    @IBAction func importCertificateButtonTapped(_ sender: Any) {
-        qrType = .importQR
-        readerVC.delegate = self
-        present(readerVC, animated: true, completion: nil)
-        
+    private func startSpinner() {
+        importCertificateButton.isHidden = true
+        descriptionLabel.isHidden = true
+        sendPublicKeyButton.isHidden = true
+        spinner.isHidden = false
+        spinner.startAnimating()
     }
-    @IBAction func sendPublicKeyButtonTapped(_ sender: UIButton) {
-        qrType = .sendKey
-        readerVC.delegate = self
-        present(readerVC, animated: true, completion: nil)
-        
+    
+    private func stopSpinner() {
+        spinner.stopAnimating()
+        spinner.isHidden = true
+        descriptionLabel.isHidden = false
+        importCertificateButton.isHidden = false
+        sendPublicKeyButton.isHidden = false
     }
     
 }
@@ -126,29 +137,19 @@ class ImportViewController: UIViewController {
 extension ImportViewController: QRCodeReaderViewControllerDelegate {
     func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
         reader.stopScanning()
-        importCertificateButton.isHidden = true
-        descriptionLabel.isHidden = true
-        sendPublicKeyButton.isHidden = true
-        spinner.isHidden = false
-        spinner.startAnimating()
+        startSpinner()
         dismiss(animated: true, completion: nil)
         switch qrType {
         //MARK: - Retrieving data by sessionId?
         case .importQR:
             guard let model: QRCodeGetDataModel = parser.parseQRCode(data: result.value) else { return }
             dataRetrieving(model: model)
-
         //MARK: - scan QR and send data(pubKey + sign) to received url
         case .sendKey:
             guard let model: QRCodeSendKeyModel = parser.parseQRCode(data: result.value) else { return }
             guard let key = UserDefaults.standard.data(forKey: "publicKey") else { return }
-            
             networkService.sendPublicKey(key: key, model: model) { (success) in
-                self.spinner.stopAnimating()
-                self.spinner.isHidden = true
-                self.descriptionLabel.isHidden = false
-                self.importCertificateButton.isHidden = false
-                self.sendPublicKeyButton.isHidden = false
+                self.stopSpinner()
                 if success {
                     self.showAllert(message: "Your public key was successfully sent.")
                 } else {

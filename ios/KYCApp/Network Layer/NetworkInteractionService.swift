@@ -8,10 +8,9 @@ import web3swift
 
 
 //TODO: - GLOBALLY: This is a very bad code, should be refactored, should be more generic.
-
 class NetworkInteractionService {
     
-    //This is a method for getting data, which will be deleted from the server afterwards
+    //MARK: - retrieves data from the server
     func retrieveData(model: QRCodeGetDataModel, completion: @escaping(Result<[UserDataModel]>) -> Void) {
         guard let url = URL(string: model.path) else { return }
         var request = URLRequest(url: url)
@@ -74,7 +73,7 @@ class NetworkInteractionService {
         
     }
     
-    //Method, which tells the server that data could be deleted.
+    //MARK: - tells the server that data have been retrieved and saved on the device successfully, hence it should be removed from the server.
     func dataRetrievedSuccessfully(urlString: String, sessionId: String, completion: @escaping (Bool) -> Void) {
         guard let url = URL(string: urlString) else {
             completion(false)
@@ -107,7 +106,7 @@ class NetworkInteractionService {
         task.resume()
     }
     
-    //Method for sending proofs + data + signature(not now, but probably in future), requested by the bank
+    //MARK: - Sends signed data to the bank
     func sendData(withQRCodeModel model: QRCodeDataModel, data: [UserDataModel], fullData: [UserDataModel], randomNumber: Int,completion: @escaping(Bool) -> Void) {
         var fullData = fullData
         guard let signature = signData(data: getDataToSign()) else { return }
@@ -162,7 +161,7 @@ class NetworkInteractionService {
         
     }
     
-    //DONE.
+    //MARK: - sends randomly generated public key, associated with the concrete device
     func sendPublicKey(key: Data, model: QRCodeSendKeyModel, completion: @escaping(Bool) -> Void) {
         guard let url = URL(string: model.address) else { return }
         var request = URLRequest(url: url)
@@ -193,8 +192,7 @@ class NetworkInteractionService {
         dataTask.resume()
     }
     
-    
-    
+    //MARK: - signs data with private key, associated with the concrete device
     func signData(data: Data) -> Data? {
         guard let data = UserDefaults.standard.data(forKey: "keyData") else { return nil }
         guard let address = UserDefaults.standard.object(forKey: "address") as? String else { return nil }
@@ -204,43 +202,9 @@ class NetworkInteractionService {
         return signature.serializedSignature
     }
     
+    //MARK: - just for testing purposes, should be removed in further versions
     private func getDataToSign() -> Data {
         return "подпись".data(using: .utf8)!
     }
-}
-
-enum Result<T> {
-    case success(T)
-    case error(Error)
-}
-
-enum NetworkErrors: Error {
-    case wrongFromatOfData
-    case wrongCheckSum
-}
-
-//MARK: - Codable structs for use in httpBodies
-struct InitialData: Codable {
-    var publicKey: String
-    let sessionId: String
-    let mainURL: String
-    let signature: String
-}
-
-struct GetDataPOSTBody: Codable {
-    let sessionId: String
-    let signature: String
-}
-
-struct DataToBankPOSTBody: Codable {
-    let id: Int
-    let key: Int
-    let rootHash: String
-    let data: [String: DataWithProof]
-}
-
-struct DataWithProof: Codable {
-    let value: String
-    let proof: String
 }
 
