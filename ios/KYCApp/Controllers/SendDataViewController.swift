@@ -77,7 +77,7 @@ extension SendDataViewController: UITableViewDelegate, UITableViewDataSource {
         return data.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "informationCell") as? InformationCell2 else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "informationCell") as? InformationCell else { return UITableViewCell() }
         cell.configureCell(withData: data[indexPath.row])
         return cell
     }
