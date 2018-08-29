@@ -29,6 +29,7 @@
 		394D1672A245E689CB927967 /* libPods-KYCApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC3D3C7418093F4D5911DCD /* libPods-KYCApp.a */; };
 		6681659B212E087F00ADF58E /* CodableStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6681659A212E087F00ADF58E /* CodableStructs.swift */; };
 		6681659D212E08DB00ADF58E /* CommonEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6681659C212E08DB00ADF58E /* CommonEnums.swift */; };
+		668165A02136AD5E00ADF58E /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6681659F2136AD5E00ADF58E /* CommonExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		355CABDFFC1C5B8D317E4CCF /* Pods-KYCApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KYCApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KYCApp/Pods-KYCApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6681659A212E087F00ADF58E /* CodableStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableStructs.swift; sourceTree = "<group>"; };
 		6681659C212E08DB00ADF58E /* CommonEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonEnums.swift; sourceTree = "<group>"; };
+		6681659F2136AD5E00ADF58E /* CommonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
 		FC9397007A7136850D00FC5E /* Pods-KYCApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KYCApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-KYCApp/Pods-KYCApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 				66816598212E07FC00ADF58E /* Network Layer */,
 				0020901E21049D3900988403 /* Service Layer */,
 				00208FE02104674D00988403 /* AppDelegate.swift */,
+				6681659F2136AD5E00ADF58E /* CommonExtensions.swift */,
 				00208FE42104674D00988403 /* Main.storyboard */,
 				00208FE72104674E00988403 /* Assets.xcassets */,
 				00208FE92104674E00988403 /* LaunchScreen.storyboard */,
@@ -312,6 +315,7 @@
 				002090322105E16E00988403 /* PaddableTree.swift in Sources */,
 				6681659D212E08DB00ADF58E /* CommonEnums.swift in Sources */,
 				0020902F2105E14300988403 /* Hashing.swift in Sources */,
+				668165A02136AD5E00ADF58E /* CommonExtensions.swift in Sources */,
 				0020901D210497FD00988403 /* UserDataModel.swift in Sources */,
 				00B17CDA211850A400EFC16C /* RoundedButton.swift in Sources */,
 				0020901321047E4D00988403 /* ProfileViewController.swift in Sources */,

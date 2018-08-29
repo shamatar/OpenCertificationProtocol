@@ -12,6 +12,7 @@ class SettingsViewController: UIViewController {
     
     let localStorage = LocalStorageService()
     
+    //TODO: - Clean the keystore, create new pair
     @IBAction func deleteProfileButtonTapped(_ sender: Any) {
         let alertController = UIAlertController(title: nil, message: "Are you sure that you want to delete profile?", preferredStyle: .alert)
         let actionNo = UIAlertAction(title: "No", style: .default, handler: nil)

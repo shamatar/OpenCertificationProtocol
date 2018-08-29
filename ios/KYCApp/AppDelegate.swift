@@ -31,52 +31,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileViewController")
             window?.rootViewController = vc
         }
-        
         return true
     }
     
-    //TODO: - Here should be a check of local dataStorage
-    func isThereAnyDataOnThePhone() -> Bool {
+    private func isThereAnyDataOnThePhone() -> Bool {
         return localStorage.isThereAnyData()
     }
     
-    //TODO: - Remove it as soon as possible
+    //TODO: - Move it to coreData, let user to set multiple profiles(?).
     func putWalletIntoApp() {
-        
-//        let key = "1693666291400fef491bc87aec5359d3229eb6e676e1ec7d636a06b3e0cf61af"
-//        let text = key.trimmingCharacters(in: .whitespacesAndNewlines)
-//        guard let data = Data.fromHex(text) else {
-//            return
-//        }
-//
-//        guard let newWallet = try? EthereumKeystoreV3(privateKey: data) else {
-//            return
-//        }
-//
-//        guard let wallet = newWallet, wallet.addresses?.count == 1 else {
-//            return
-//        }
-//        guard let keyData = try? JSONEncoder().encode(wallet.keystoreParams) else {
-//            return
-//        }
-//        guard let address = newWallet?.addresses?.first?.address else {
-//            return
-//        }
-        //let data = try? EthereumKeystoreV3()
         if UserDefaults.standard.value(forKey: "keyData") == nil {
-            guard let newWallet = try? EthereumKeystoreV3() else {
-                return
-            }
-            
-            guard let wallet = newWallet, wallet.addresses?.count == 1 else {
-                return
-            }
-            guard let keyData = try? JSONEncoder().encode(wallet.keystoreParams) else {
-                return
-            }
-            guard let address = newWallet?.addresses?.first?.address else {
-                return
-            }
+            guard let newWallet = try? EthereumKeystoreV3() else {return}
+            guard let wallet = newWallet, wallet.addresses?.count == 1 else {return}
+            guard let keyData = try? JSONEncoder().encode(wallet.keystoreParams) else {return}
+            guard let address = newWallet?.addresses?.first?.address else {return}
             guard let pk = try? newWallet?.UNSAFE_getPrivateKeyData(password: "BANKEXFOUNDATION", account: EthereumAddress(address)!), let privateKey = pk else { return }
             guard let publicKey = Web3.Utils.privateToPublic(privateKey) else { return }
             UserDefaults.standard.set(keyData, forKey: "keyData")
@@ -86,8 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    //Not sure what is the difference between commented method and didFinishLaunchingWithOptions
-    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "first") as! ImportViewController
         guard let index = url.absoluteString.index(of: "/") else { return true}
@@ -95,29 +61,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         vc.urlString = "https://" + String(url.absoluteString[i...])
         window?.rootViewController = vc
         return true
-    }
-
-
-}
-
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
-
-extension String {
-    func hexToUInt<T>() -> T? where T: FixedWidthInteger {
-        var value = self
-        if value.hasPrefix("0x") {
-            value.removeFirst(2)
-        }
-        return T(value, radix: 16)
     }
 }

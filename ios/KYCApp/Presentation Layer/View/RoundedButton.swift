@@ -17,12 +17,14 @@ class RoundedButton: UIButton {
             self.setNeedsDisplay()
         }
     }
+    
     @IBInspectable var borderColor: UIColor = #colorLiteral(red: 0.5294117647, green: 0.2784313725, blue: 0.9058823529, alpha: 1) {
         didSet {
             layer.borderColor = borderColor.cgColor
             self.setNeedsDisplay()
         }
     }
+    
     @IBInspectable var cornerRadius: CGFloat = 8 {
         didSet {
             layer.cornerRadius = cornerRadius
